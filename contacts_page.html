@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <script>
+        // Load the navigation bar
+        fetch('navbar.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to load navigation bar');
+                }
+                return response.text();
+            })
+            .then(data => {
+                document.body.insertAdjacentHTML('afterbegin', data);
+            })
+            .catch(error => {
+                console.error('Error loading navigation bar:', error);
+            });
+    </script>
+    <!-- Styling the page using css-->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background-color: white;
+        }
+
+        .top-space {
+            height: 30vh;
+            background-color: white;
+        }
+
+        .middle-section {
+            background-color: grey;
+            color: white;
+            text-align: center;
+            padding: 50px 0;
+            height: 40vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        h1 {
+            font-size: 42px;
+            font-weight: bold;
+        }
+    
+        p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 10px auto;
+        }
+
+        .bottom-section {
+            height: 30vh;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contact-info{
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        .contact-column {
+            flex: 1;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .contact-column p {
+            margin: 5px 0;
+        }
+
+        .contact-column a {
+            color: blue;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .icon{
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div class="top-space"></div>
+    <div class="middle-section">
+        <h1>Contact Me</h1>
+        <p>I am always open to new opportunities, collaborations, and meaningful conversations. Feel free to reach out, and I will respond as soon as possible. Looking forward to connecting with you!</p>
+    </div>
+    <div class="bottom-section">
+        <div class="contact-info">
+            <div class="contact-column">
+                <p><strong>Email:</strong></p>
+                <p><a href="mailto:martinpetersonds@gmail.com">📧 martinpetersonds@gmail.com</a></p>
+                <p><a href="mailto:wawerumartin51@gmail.com">📧 wawerumartin51@gmail.com</a></p>
+            </div>
+            <div class="contact-column">
+                <p><strong>Calls:</strong></p>
+                <p><a href="tel:+254723411285">📞 +254723411285</a></p>
+                <p><a href="tel:+254736259483">📞 +254736259483</a></p>
+            </div>
+            <div class="contact-column">
+                <p><strong>WhatsApp:</strong></p>
+                <p><a href="https://wa.me/254723411285" target="_blank">💬 Chat on WhatsApp</a></p>
+            </div>
+            <div class="contact-column">
+                <p><strong>LinkedIn:</strong></p>
+                <p><a href="https://www.linkedin.com/in/martin-waweru-169287336/" target="_blank">🔗 Visit LinkedIn Profile</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

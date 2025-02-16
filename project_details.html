@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 60px 0 0; /* Space for the navigation bar */
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .project-details {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .project-details h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        .project-details p {
+            margin: 10px 0;
+            color: #555;
+        }
+        .project-details a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .project-details a:hover {
+            text-decoration: underline;
+        }
+        .file-section {
+            margin-top: 20px;
+        }
+        .file-section h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .file-section iframe, .file-section img, .file-section video {
+            max-width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .file-section a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .file-section a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        // Load the navigation bar
+        fetch('../navbar.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to load navigation bar');
+                }
+                return response.text();
+            })
+            .then(data => {
+                document.body.insertAdjacentHTML('afterbegin', data);
+            })
+            .catch(error => {
+                console.error('Error loading navigation bar:', error);
+            });
+    </script>
+</head>
+<body>
+    <div class="project-details" id="projectDetails">
+        <h2>Project Details</h2>
+        <p><strong>Title:</strong> <span id="title"></span></p>
+        <p><strong>Highlight:</strong> <span id="highlight"></span></p>
+        <p><strong>Description:</strong> <span id="description"></span></p>
+
+        <!-- File Sections -->
+        <div class="file-section">
+            <h3>Slide Presentation</h3>
+            <iframe id="slidePresentation" width="100%" height="400px"></iframe>
+            <a id="slideDownload" download>Download Slide Presentation</a>
+        </div>
+
+        <div class="file-section">
+            <h3>Notebook</h3>
+            <iframe id="notebookPresentation" width="100%" height="400px"></iframe>
+            <a id="notebookDownload" download>Download Notebook</a>
+        </div>
+
+        <div class="file-section">
+            <h3>Video</h3>
+            <video id="videoUpload" controls width="100%">
+                Your browser does not support the video tag.
+            </video>
+            <a id="videoDownload" download>Download Video</a>
+        </div>
+
+        <div class="file-section">
+            <h3>Dashboard Image</h3>
+            <img id="dashboardImage" src="" alt="Dashboard Image" width="100%">
+            <a id="imageDownload" download>Download Image</a>
+        </div>
+
+        <p><strong>GitHub Link:</strong> <a id="githubLink" target="_blank"></a></p>
+        <p><strong>Visualization URL:</strong> <a id="visualizationUrl" target="_blank"></a></p>
+        <p><strong>Deployment URL:</strong> <a id="deploymentUrl" target="_blank"></a></p>
+        <p><strong>Comments:</strong> <span id="comments"></span></p>
+    </div>
+
+    <script>
+        // Get the project details from the URL
+        const params = new URLSearchParams(window.location.search);
+
+        // Display the project details
+        document.getElementById("title").textContent = params.get("title") || "N/A";
+        document.getElementById("highlight").textContent = params.get("highlight") || "N/A";
+        document.getElementById("description").textContent = params.get("description") || "N/A";
+        document.getElementById("githubLink").href = params.get("githubLink") || "#";
+        document.getElementById("githubLink").textContent = params.get("githubLink") || "N/A";
+        document.getElementById("visualizationUrl").href = params.get("visualizationUrl") || "#";
+        document.getElementById("visualizationUrl").textContent = params.get("visualizationUrl") || "N/A";
+        document.getElementById("deploymentUrl").href = params.get("deploymentUrl") || "#";
+        document.getElementById("deploymentUrl").textContent = params.get("deploymentUrl") || "N/A";
+        document.getElementById("comments").textContent = params.get("comments") || "N/A";
+
+        // Display files
+        const slidePresentation = params.get("slidePresentation");
+        const notebookPresentation = params.get("notebookPresentation");
+        const videoUpload = params.get("videoUpload");
+        const dashboardImage = params.get("dashboardImage");
+
+        if (slidePresentation) {
+            document.getElementById("slidePresentation").src = slidePresentation;
+            document.getElementById("slideDownload").href = slidePresentation;
+        } else {
+            document.getElementById("slidePresentation").style.display = "none";
+            document.getElementById("slideDownload").style.display = "none";
+        }
+
+        if (notebookPresentation) {
+            document.getElementById("notebookPresentation").src = notebookPresentation;
+            document.getElementById("notebookDownload").href = notebookPresentation;
+        } else {
+            document.getElementById("notebookPresentation").style.display = "none";
+            document.getElementById("notebookDownload").style.display = "none";
+        }
+
+        if (videoUpload) {
+            document.getElementById("videoUpload").src = videoUpload;
+            document.getElementById("videoDownload").href = videoUpload;
+        } else {
+            document.getElementById("videoUpload").style.display = "none";
+            document.getElementById("videoDownload").style.display = "none";
+        }
+
+        if (dashboardImage) {
+            document.getElementById("dashboardImage").src = dashboardImage;
+            document.getElementById("imageDownload").href = dashboardImage;
+        } else {
+            document.getElementById("dashboardImage").style.display = "none";
+            document.getElementById("imageDownload").style.display = "none";
+        }
+    </script>
+</body>
+</html>

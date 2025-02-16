@@ -1,0 +1,37 @@
+<!-- Navigation Bar -->
+<nav>
+    <a href="navigation_page.html">🏠 Home</a> |
+    <a href="project_page.html">📂 Projects</a> |
+    <a href="contacts_page.html">📞 Contacts</a> |
+    <a href="javascript:void(0);" onclick="history.back()">🔙 Back</a>
+</nav>
+
+<!-- Add some CSS for the navigation bar -->
+<style>
+    nav {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100%;
+        background-color: lightgreen;
+        padding: 15px 0;
+        text-align: right;
+        padding-left: 20px;
+        z-index: 1000; /* Ensure the nav bar stays on top of other content */
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        margin-left: 20px;
+        font-size: 12px;
+        font-weight: bold;
+        background-color: blue;
+        padding: 8px;
+        border-radius: 10px;
+    }
+
+    nav a:hover {
+        background-color: darkblue;
+    }
+</style>

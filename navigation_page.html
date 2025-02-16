@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- setting the page title -->
+    <title>About | Martin Waweru</title>
+    <!-- Adding Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Adding the sticky navigation bar -->
+    <!-- Add this script to load the navigation bar -->
+    <script>
+        // Load the navigation bar
+        fetch('../navbar.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to load navigation bar');
+                }
+                return response.text();
+            })
+            .then(data => {
+                document.body.insertAdjacentHTML('afterbegin', data);
+            })
+            .catch(error => {
+                console.error('Error loading navigation bar:', error);
+            });
+    </script>
+    <style>
+        /* Since we are styling we use CSS */
+        nav {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            background-color: lightgreen;
+            padding: 15px 0;
+            text-align: right;
+            padding-left: 20px;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            background-color: blue;
+            padding: 8px;
+            border-radius: 10px;
+        }
+
+        nav a:hover {
+            background-color: darkblue;
+        }
+        /* adding space to avoid text been hidden by nav tab*/
+        body{
+            margin-top: 60px;
+            margin-bottom: 50px;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Back button styling */
+        .back-button {
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            background-color: blue;
+            color: white;
+            font-size: 16px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background-color: darkblue;
+        }
+        /* Adding the Profile Picture*/
+        .profile-container {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .profile-left {
+            text-align: center;
+            flex: 0.5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            background-color: grey;
+            padding: 20px;
+            min-width: 180px;
+        }
+
+        .about-section {
+            flex: 3.5;
+            padding: 35px;
+            text-align: center;
+            background: url('about section.jpg');
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 100%;
+            position: relative;
+        }
+
+        .about-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+        }
+
+        .about-section h2, .about-section p {
+            position: relative;
+            z-index: 1;
+        }
+
+        #profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid white;
+            background-color: transparent;
+        }
+
+        .quote {
+            font-style: italic;
+            color: black;
+            margin-top: 10px;
+        }
+
+        .search-bar {
+            margin-top: 20px;
+            width: 80%;
+            padding: 6px;
+            font-size: 12px;
+            border-radius: 15px;
+        }
+
+        .dashboard, .button {
+            margin-top: 20px;
+            padding: 8px;
+            background-color: blue;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            width: 80%;
+            border-radius: 10px;
+        }
+
+        .dashboard:hover, button:hover {
+            background-color: darkblue;
+        }
+
+        .profile-right {
+            padding: 30px;
+            text-align: left;
+            flex: 5;
+        }
+        /* setting Footer styling for LinkedIn and GitHub */
+        .footer {
+            position: fixed;
+            bottom: 10px;
+            right: 20px;
+            text-align: right;
+        }
+        .footer a {
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-left: 15px;
+            background-color: blue;
+            padding: 8px;
+            border-radius: 10px;
+        }
+
+        .footer a:hover {
+            background-color: darkblue;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <!-- Setting the body -->
+    <!-- JavaScript to Fetch Navigation Bar -->
+     <!--<nav>-->
+        <!--<a href="#">🏠 Home</a> |-->
+        <!--<a href="project_page.html">📂Projects</a> |-->
+        <!--<a href="contacts_page.html">📞Contacts</a> |-->
+        <!--<a href="javascript:void(0);" onclick="history.back()">🔙Back</a>-->
+     <!--</nav>-->
+     <!--Setting the profile pic-->
+     <section class="profile-container">
+        <div class="profile-left">
+            <img src="profile.jpg" alt="profile Picture" id="profile-pic">
+            <h2>Martin Waweru</h2>
+            <p class="quote">"Data is the new oil, and I'm here to refine it."</p>
+            <input type="text" class="search-bar" placeholder="🔍Search projects...">
+            <div class="dashboard">📈Dashboard</div>
+        </div>
+
+        <div class="about-section">
+            <h2>About Me</h2>
+            <p>
+                "I am a dedicated and results-driven Data Scientist with a Bachelor of Science in Business Administration with IT (Finance option). My expertise lies at the intersection of data science, financial analysis, and business strategy, allowing me to transform complex data into actionable insights that drive informed decision-making.  
+            </p>
+            <p>
+                I have a strong foundation in data analytics, machine learning, and financial modeling, and I have worked on projects involving predictive modeling, customer analytics, sentiment analysis, and recommendation systems. I specialize in data preprocessing, feature engineering, model optimization, and visualization, using tools like Python, SQL, and machine learning frameworks to build impactful solutions.  
+            </p>
+            <p>
+                I am passionate about leveraging data-driven approaches to enhance financial inclusion, business intelligence, and technological innovation. My ability to bridge the gap between data science and business strategy helps organizations improve operational efficiency and create meaningful value.  
+            </p>
+            <p>
+                I am eager to learn, collaborate, and innovate, applying my analytical expertise to solve real-world challenges. I welcome new opportunities, meaningful conversations, and collaborations. Feel free to reach out—I look forward to connecting with you! 💻💻"
+            </p>
+        </div>
+     </section>
+     <!-- Linkedin and Github footer mapping-->
+      <footer class="footer">
+      <a href="https://www.linkedin.com/in/martin-waweru-169287336/" target="_blank">🔗LinkedIn</a> |
+      <a href="https://github.com/MwangiKinyeru" target="_blank">🐙GitHub</a>
+    </footer>
+</body>
+</html>
