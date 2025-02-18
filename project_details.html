@@ -4,7 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Details</title>
+    <script>
+        // Load the navigation bar
+        fetch('/Website/navbar.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to load navigation bar');
+                }
+                return response.text();
+            })
+            .then(data => {
+                // Insert the navigation bar at the beginning of the body
+                document.body.insertAdjacentHTML('afterbegin', data);
+                console.log('Navigation bar loaded successfully'); // Debugging message
+            })
+            .catch(error => {
+                console.error('Error loading navigation bar:', error); // Debugging message
+            });
+    </script>
+    <!-- Styling the page using CSS -->
     <style>
+        /* Navigation Bar Styling */
+        nav {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            background-color: lightgreen;
+            padding: 15px 0;
+            text-align: right;
+            padding-left: 20px;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            background-color: blue;
+            padding: 8px;
+            border-radius: 10px;
+        }
+
+        nav a:hover {
+            background-color: darkblue;
+        }
         body {
             font-family: Arial, sans-serif;
             margin: 60px 0 0; /* Space for the navigation bar */
