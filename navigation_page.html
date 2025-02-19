@@ -231,10 +231,16 @@
     </style>
 </head>
 <body>
-     <!--Setting the profile pic-->
-     <section class="profile-container">
+    <!-- Profile Picture Section -->
+    <section class="profile-container">
         <div class="profile-left">
-            <img src="profile.jpg" alt="profile Picture" id="profile-pic">
+            <div class="profile-pic-container">
+                <img src="profile.jpg" alt="Profile Picture" id="profile-pic">
+                <label for="file-input" class="camera-icon">
+                    <i class="fas fa-camera"></i>
+                </label>
+                <input type="file" id="file-input" class="file-input" accept="image/*" onchange="handleProfilePictureUpload(event)">
+            </div>
             <h2>Martin Waweru</h2>
             <p class="quote">"Data is the new oil, and I'm here to refine it."</p>
             <input type="text" class="search-bar" placeholder="🔍Search projects...">
