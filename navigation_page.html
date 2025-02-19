@@ -23,6 +23,18 @@
             .catch(error => {
                 console.error('Error loading navigation bar:', error);
             });
+        // Function to handle profile picture upload
+        function handleProfilePictureUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const profilePic = document.getElementById('profile-pic');
+                    profilePic.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
     </script>
     <style>
         /* Since we are styling we use CSS */
@@ -194,6 +206,26 @@
 
         .footer a:hover {
             background-color: darkblue;
+        }
+
+        .profile-pic-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .camera-icon {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .file-input {
+            display: none;
         }
 
     </style>
