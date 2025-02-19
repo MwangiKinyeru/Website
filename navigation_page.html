@@ -181,6 +181,34 @@
             background-color: darkblue;
         }
 
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ccc;
+            width: 100%;
+            max-height: 150px;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 8px 12px;
+            text-decoration: none;
+            display: block;
+            font-size: 12px;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .show {
+            display: block;
+        }
+
         .profile-right {
             padding: 30px;
             text-align: left;
@@ -243,8 +271,14 @@
             </div>
             <h2>Martin Waweru</h2>
             <p class="quote">"Data is the new oil, and I'm here to refine it."</p>
-            <input type="text" class="search-bar" placeholder="🔍Search projects...">
-            <div class="dashboard">📈Dashboard</div>
+            <input type="text" class="search-bar" placeholder="🔍Search projects..." oninput="filterProjects()">
+            <!--<div class="dashboard">📈Dashboard</div>-->
+            <div class="dashboard" onclick="toggleDropdown()">
+                📈Dashboard
+                <div class="dropdown-content" id="dropdown-content">
+                    <!-- Project titles will be dynamically added here -->
+                </div>
+            </div>
         </div>
 
         <div class="about-section">
@@ -268,5 +302,62 @@
       <a href="https://www.linkedin.com/in/martin-waweru-169287336/" target="_blank">🔗LinkedIn</a> |
       <a href="https://github.com/MwangiKinyeru" target="_blank">🐙GitHub</a>
     </footer>
+     <script>
+        // Function to handle profile picture upload
+        function handleProfilePictureUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const profilePic = document.getElementById('profile-pic');
+                    profilePic.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Function to toggle the dropdown
+        function toggleDropdown() {
+            const dropdown = document.getElementById('dropdown-content');
+            dropdown.classList.toggle('show');
+        }
+
+        // Function to filter projects based on search input
+        function filterProjects() {
+            const searchTerm = document.getElementById('search-bar').value.toLowerCase();
+            const projects = JSON.parse(localStorage.getItem('projects')) || [];
+            const filteredProjects = projects.filter(project => project.toLowerCase().includes(searchTerm));
+            updateDropdown(filteredProjects);
+        }
+
+        // Function to update the dropdown with project titles
+        function updateDropdown(projects) {
+            const dropdownContent = document.getElementById('dropdown-content');
+            dropdownContent.innerHTML = '';
+            projects.forEach(project => {
+                const link = document.createElement('a');
+                link.href = `#${project}`; // Replace with actual project link
+                link.textContent = project;
+                dropdownContent.appendChild(link);
+            });
+        }
+
+        // Function to add a new project
+        function addProject(title) {
+            const projects = JSON.parse(localStorage.getItem('projects')) || [];
+            projects.push(title);
+            localStorage.setItem('projects', JSON.stringify(projects));
+            updateDropdown(projects);
+        }
+
+        // Load projects on page load
+        window.onload = function () {
+            const projects = JSON.parse(localStorage.getItem('projects')) || [];
+            updateDropdown(projects);
+        };
+
+        // Example: Add a new project (for testing)
+        // addProject('Data Analysis Dashboard');
+    </script>
 </body>
 </html>
