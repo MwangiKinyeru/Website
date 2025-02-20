@@ -147,9 +147,20 @@
             border-radius: 5px;
             cursor: pointer;
         }
+
+        .admin-only {
+            display: none; /* Hide admin buttons by default */
+        }
+        
     </style>
 </head>
 <body>
+     <!-- Navigation Panel -->
+    <nav>
+        <h1>My Portfolio</h1>
+        <button onclick="loginAsAdmin()">Login as Admin</button>
+    </nav>
+
     <div class="header">
         <h1>My Projects</h1>
         <div>
@@ -211,6 +222,32 @@
     <div class="projects-container" id="projectsContainer"></div>
 
     <script>
+         // Hardcoded admin password (for simplicity)
+        const ADMIN_PASSWORD = "mysecretpassword";
+
+        // Function to handle admin login
+        function loginAsAdmin() {
+            const password = prompt("Enter admin password:");
+            if (password === ADMIN_PASSWORD) {
+                alert("Logged in as Admin!");
+                // Show admin-only buttons
+                document.querySelectorAll(".admin-only").forEach(button => {
+                    button.style.display = "inline-block";
+                });
+            } else {
+                alert("Incorrect password!");
+            }
+        }
+
+        // Function to toggle the "Add Project" form
+        function toggleForm() {
+            alert("Add Project functionality goes here!");
+        }
+
+        // Function to toggle delete mode
+        function toggleDeleteMode() {
+            alert("Delete Mode functionality goes here!");
+        }
         // Declare the projects array
         let projects = [];
         function toggleForm() {
