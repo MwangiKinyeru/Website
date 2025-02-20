@@ -172,6 +172,17 @@
         var form = document.getElementById("projectForm");
         form.style.display = form.style.display === "none" || form.style.display === "" ? "block" : "none";
     }
+     function adminLogin() {
+            const password = prompt("Enter admin password:");
+            if (password === "yourSecretPassword") {
+                document.getElementById("addProjectBtn").style.display = "inline-block";
+                document.getElementById("deleteModeBtn").style.display = "inline-block";
+                document.getElementById("adminLoginBtn").style.display = "none";
+                alert("Admin access granted.");
+            } else {
+                alert("Incorrect password!");
+            }
+        }
 
     function addProject() {
         // Get form values
