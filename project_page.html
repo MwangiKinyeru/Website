@@ -21,7 +21,6 @@
             });
     </script>
     <style>
-        /* Navigation Panel */
         nav {
             position: fixed;
             top: 0;
@@ -48,7 +47,6 @@
         nav a:hover {
             background-color: darkblue;
         }
-
         body {
             font-family: Arial, sans-serif;
             background-color: white;
@@ -56,15 +54,13 @@
             padding: 20px;
             margin: 0;
         }
-
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 20px;
+            margin-top: 20px; 
             padding-top: 15px;
         }
-
         .btn {
             padding: 10px 15px;
             margin: 5px;
@@ -74,18 +70,15 @@
             background-color: #007BFF;
             border-radius: 5px;
         }
-
         .btn.delete-mode {
             background-color: red;
         }
-
         .projects-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 20px;
             margin-top: 20px;
         }
-
         .project-card {
             background-color: #008B8B;
             padding: 10px;
@@ -97,7 +90,53 @@
             flex-direction: column;
             justify-content: space-between;
         }
-
+        .checkbox {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: none;
+            width: 15px;
+            height: 15px;
+        }
+        .delete-mode-active .checkbox {
+            display: block;
+        }
+        .form-container {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        .form-container label {
+            font-size: 14px;
+            font-weight: bold;
+            display: block;
+            margin-top: 8px;
+        }
+        .form-container input, .form-container textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-container .file-upload {
+            display: flex;
+            flex-direction: column;
+            margin: 5px 0;
+        }
+        .form-container .file-upload label {
+            margin-bottom: 5px;
+        }
+        .form-container .file-upload span {
+            font-size: 12px;
+            color: #555;
+            margin-top: 3px;
+        }
+        .form-container button {
+            margin-top: 10px;
+        }
         .view-project {
             margin-top: auto;
             display: inline-block;
@@ -108,73 +147,17 @@
             border-radius: 5px;
             cursor: pointer;
         }
-
-        .admin-only {
-            display: none; /* Hide admin buttons by default */
-        }
-
-        .form-container {
-            display: none;
-            margin-top: 20px;
-            padding: 20px;
-            background-color: #f8f9fa;
-            border-radius: 8px;
-        }
-
-        .form-container label {
-            font-size: 14px;
-            font-weight: bold;
-            display: block;
-            margin-top: 8px;
-        }
-
-        .form-container input, .form-container textarea {
-            width: 100%;
-            padding: 8px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .form-container .file-upload {
-            display: flex;
-            flex-direction: column;
-            margin: 5px 0;
-        }
-
-        .form-container .file-upload label {
-            margin-bottom: 5px;
-        }
-
-        .form-container .file-upload span {
-            font-size: 12px;
-            color: #555;
-            margin-top: 3px;
-        }
-
-        .form-container button {
-            margin-top: 10px;
-        }
     </style>
 </head>
 <body>
-    <!-- Navigation Panel -->
-    <nav>
-        <h1>My Portfolio</h1>
-        <button onclick="loginAsAdmin()">Login as Admin</button>
-    </nav>
-
-    <!-- Header with Admin-Only Buttons -->
     <div class="header">
         <h1>My Projects</h1>
         <div>
-            <!-- Admin-only buttons -->
-            <button class="btn admin-only" onclick="toggleForm()">Add Project</button>
-            <button class="btn delete-mode admin-only" onclick="toggleDeleteMode()">Delete Mode</button>
+            <button class="btn" onclick="toggleForm()">Add Project</button>
+            <button class="btn delete-mode" onclick="toggleDeleteMode()">Delete Mode</button>
         </div>
     </div>
-
-    <!-- Add Project Form -->
+    
     <div class="form-container" id="projectForm">
         <h3>Add New Project</h3>
         <label>Project Title *</label>
@@ -224,43 +207,17 @@
         
         <button class="btn" onclick="addProject()">Submit</button>
     </div>
-
-    <!-- Projects Container -->
+    
     <div class="projects-container" id="projectsContainer"></div>
 
     <script>
-        // Hardcoded admin password (for simplicity)
-        const ADMIN_PASSWORD = "mysecretpassword";
-
-        // Function to handle admin login
-        function loginAsAdmin() {
-            const password = prompt("Enter admin password:");
-            if (password === ADMIN_PASSWORD) {
-                alert("Logged in as Admin!");
-                // Show admin-only buttons
-                document.querySelectorAll(".admin-only").forEach(button => {
-                    button.style.display = "inline-block";
-                });
-            } else {
-                alert("Incorrect password!");
-            }
-        }
-
-        // Function to toggle the "Add Project" form
+        // Declare the projects array
+        let projects = [];
         function toggleForm() {
-            const form = document.getElementById("projectForm");
+            var form = document.getElementById("projectForm");
             form.style.display = form.style.display === "none" || form.style.display === "" ? "block" : "none";
         }
 
-        // Function to toggle delete mode
-        function toggleDeleteMode() {
-            alert("Delete Mode functionality goes here!");
-        }
-
-        // Declare the projects array
-        let projects = [];
-
-        // Function to add a new project
         function addProject() {
             // Get form values
             const title = document.getElementById("projectTitle").value;
@@ -314,7 +271,6 @@
             }
         }
 
-        // Function to view a project
         function viewProject(index) {
             // Redirect to project_details.html with the project data as URL parameters
             const project = projects[index];
