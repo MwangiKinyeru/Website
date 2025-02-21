@@ -113,7 +113,7 @@
         </div>
     </div>
 
-    <div class="form-container" id="projectForm" style="display:none;">
+   div class="form-container" id="projectForm" style="display:none;">
         <h3>Add New Project</h3>
         <label>Project Title *</label>
         <input type="text" id="projectTitle" placeholder="Project Title" required>
@@ -123,21 +123,12 @@
         <textarea id="projectDescription" placeholder="Project Description" required></textarea>
         <label>GitHub *</label>
         <input type="text" id="githubLink" placeholder="GitHub Link" required>
-        <div class="file-upload">
-            <label>Upload Notebook (PDF only) *</label>
-            <input type="file" id="notebookPresentation" accept=".pdf">
-            <span>📁 Choose file (Accepted: .pdf)</span>
-        </div>
-        <div class="file-upload">
-            <label>Upload Video (Optional)</label>
-            <input type="file" id="videoUpload" accept="video/*">
-            <span>📁 Choose file (Accepted: Video formats)</span>
-        </div>
-        <div class="file-upload">
-            <label>Upload Dashboard Image (Optional)</label>
-            <input type="file" id="dashboardImage" accept="image/*">
-            <span>📁 Choose file (Accepted: Image formats)</span>
-        </div>
+        <label>Notebook Presentation (PDF URL) *</label>
+        <input type="text" id="notebookPresentation" placeholder="PDF URL">
+        <label>Video (Optional, URL)</label>
+        <input type="text" id="videoUpload" placeholder="Video URL">
+        <label>Dashboard Image (Optional, URL)</label>
+        <input type="text" id="dashboardImage" placeholder="Image URL">
         <label>Visualization URL (Optional)</label>
         <input type="text" id="visualizationUrl" placeholder="Visualization URL">
         <label>Deployment URL (Optional)</label>
@@ -148,6 +139,7 @@
     </div>
 
     <div class="projects-container" id="projectsContainer"></div>
+
 
 <script>
     // Declare the projects array
