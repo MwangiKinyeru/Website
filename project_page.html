@@ -70,9 +70,6 @@
             background-color: #007BFF;
             border-radius: 5px;
         }
-        .btn.delete-mode {
-            background-color: red;
-        }
         .projects-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -90,17 +87,6 @@
             flex-direction: column;
             justify-content: space-between;
         }
-        .checkbox {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            display: none;
-            width: 15px;
-            height: 15px;
-        }
-        .delete-mode-active .checkbox {
-            display: block;
-        }
     </style>
 </head>
 <body>
@@ -109,46 +95,38 @@
         <div>
             <button class="btn" id="adminLoginBtn" onclick="adminLogin()">Admin Login</button>
             <button class="btn" id="addProjectBtn" onclick="toggleForm()" style="display:none;">Add Project</button>
-            <button class="btn delete-mode" id="deleteModeBtn" onclick="toggleDeleteMode()" style="display:none;">Delete Mode</button>
         </div>
     </div>
-  <div class="form-container" id="projectForm" style="display:none;">
+
+    <div class="form-container" id="projectForm" style="display:none;">
         <h3>Add New Project</h3>
-        <label>Project Title *</label><br>
-        <input type="text" id="projectTitle" placeholder="Project Title" required><br>
-        <label>Project Highlight *</label><br>
-        <input type="text" id="projectHighlight" placeholder="Project Highlight" required><br>
-        <label>Project Description *</label><br>
-        <textarea id="projectDescription" placeholder="Project Description" required></textarea><br>
-        <label>GitHub *</label><br>
-        <input type="text" id="githubLink" placeholder="GitHub Link" required><br>
-        <label>Notebook Presentation (PDF URL) *</label><br>
-        <input type="text" id="notebookPresentation" placeholder="PDF URL"><br>
-        <label>Video (Optional, URL)</label><br>
-        <input type="text" id="videoUpload" placeholder="Video URL"><br>
-        <label>Dashboard Image (Optional, URL)</label><br>
-        <input type="text" id="dashboardImage" placeholder="Image URL"><br>
-        <label>Visualization URL (Optional)</label><br>
-        <input type="text" id="visualizationUrl" placeholder="Visualization URL"><br>
-        <label>Deployment URL (Optional)</label><br>
-        <input type="text" id="deploymentUrl" placeholder="Deployment URL"><br>
-        <label>Comments (Optional)</label><br>
-        <textarea id="comments" placeholder="Comments"></textarea><br>
-        <button class="btn" onclick="addProject()">Submit</button>
+        <form id="projectFormElement" onsubmit="addProject(event)">
+            <label>Project Title *</label><br>
+            <input type="text" id="projectTitle" placeholder="Project Title" required><br>
+            <label>Project Highlight *</label><br>
+            <input type="text" id="projectHighlight" placeholder="Project Highlight" required><br>
+            <label>Project Description *</label><br>
+            <textarea id="projectDescription" placeholder="Project Description" required></textarea><br>
+            <label>GitHub *</label><br>
+            <input type="text" id="githubLink" placeholder="GitHub Link" required><br>
+            <button class="btn" type="submit">Submit</button>
+        </form>
     </div>
+
     <div class="projects-container" id="projectsContainer"></div>
-<script>
-    // Declare the projects array
-    let projects = [];
-    function toggleForm() {
-        var form = document.getElementById("projectForm");
-        form.style.display = form.style.display === "none" || form.style.display === "" ? "block" : "none";
-    }
-     function adminLogin() {
+
+    <script>
+        let projects = [];
+
+        function toggleForm() {
+            const form = document.getElementById("projectForm");
+            form.style.display = form.style.display === "none" ? "block" : "none";
+        }
+
+        function adminLogin() {
             const password = prompt("Enter admin password:");
             if (password === "yourSecretPassword") {
                 document.getElementById("addProjectBtn").style.display = "inline-block";
-                document.getElementById("deleteModeBtn").style.display = "inline-block";
                 document.getElementById("adminLoginBtn").style.display = "none";
                 alert("Admin access granted.");
             } else {
@@ -156,64 +134,33 @@
             }
         }
 
-    function addProject() {
-        // Get form values
-        const title = document.getElementById("projectTitle").value;
-        const highlight = document.getElementById("projectHighlight").value;
-        const description = document.getElementById("projectDescription").value;
-        const githubLink = document.getElementById("githubLink").value;
-        const slidePresentation = document.getElementById("slidePresentation").files[0];
-        const notebookPresentation = document.getElementById("notebookPresentation").files[0];
-        const videoUpload = document.getElementById("videoUpload").files[0];
-        const dashboardImage = document.getElementById("dashboardImage").files[0];
-        const visualizationUrl = document.getElementById("visualizationUrl").value;
-        const deploymentUrl = document.getElementById("deploymentUrl").value;
-        const comments = document.getElementById("comments").value;
+        function addProject(event) {
+            event.preventDefault();
+            const title = document.getElementById("projectTitle").value;
+            const highlight = document.getElementById("projectHighlight").value;
+            const description = document.getElementById("projectDescription").value;
+            const githubLink = document.getElementById("githubLink").value;
 
-        if (title && highlight && description && githubLink) {
-            // Create a project object
-            const project = {
-                title,
-                highlight,
-                description,
-                githubLink,
-                slidePresentation: slidePresentation ? slidePresentation.name : null,
-                notebookPresentation: notebookPresentation ? notebookPresentation.name : null,
-                videoUpload: videoUpload ? videoUpload.name : null,
-                dashboardImage: dashboardImage ? dashboardImage.name : null,
-                visualizationUrl,
-                deploymentUrl,
-                comments
-            };
+            if (title && highlight && description && githubLink) {
+                const project = { title, highlight, description, githubLink };
+                projects.push(project);
 
-            // Add the project to the array
-            projects.push(project);
+                const container = document.getElementById("projectsContainer");
+                const card = document.createElement("div");
+                card.className = "project-card";
+                card.innerHTML = `
+                    <h3>${title}</h3>
+                    <p>${highlight}</p>
+                    <a href="project_details.html?title=${encodeURIComponent(title)}" class="view-project">View Project</a>
+                `;
+                container.appendChild(card);
 
-            // Create a new card
-            const container = document.getElementById("projectsContainer");
-            const card = document.createElement("div");
-            card.className = "project-card";
-            card.innerHTML = `
-                <h3>${title}</h3>
-                <p>${highlight}</p>
-                <a href="#" class="view-project" onclick="viewProject(${projects.length - 1})">View Project</a>
-            `;
-            container.appendChild(card);
-
-            // Clear the form
-            document.getElementById("projectForm").reset();
-            toggleForm(); // Hide the form
-            alert("Project added successfully!");
-        } else {
-            alert("Please fill in the required fields!");
-        }
-    }
-
-    function viewProject(index) {
-        // Redirect to project_details.html with the project data as URL parameters
-        const project = projects[index];
-        const queryString = new URLSearchParams(project).toString();
-        window.location.href = `project_details.html?${queryString}`;
+                document.getElementById("projectFormElement").reset();
+                toggleForm();
+                alert("Project added successfully!");
+            } else {
+                alert("Please fill in the required fields!");
+            }
         }
     </script>
 </body>
