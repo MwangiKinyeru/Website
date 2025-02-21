@@ -149,5 +149,84 @@
 
     <div class="projects-container" id="projectsContainer"></div>
 
+<script>
+    // Declare the projects array
+    let projects = [];
+    function toggleForm() {
+        var form = document.getElementById("projectForm");
+        form.style.display = form.style.display === "none" || form.style.display === "" ? "block" : "none";
+    }
+     function adminLogin() {
+            const password = prompt("Enter admin password:");
+            if (password === "yourSecretPassword") {
+                document.getElementById("addProjectBtn").style.display = "inline-block";
+                document.getElementById("deleteModeBtn").style.display = "inline-block";
+                document.getElementById("adminLoginBtn").style.display = "none";
+                alert("Admin access granted.");
+            } else {
+                alert("Incorrect password!");
+            }
+        }
+
+    function addProject() {
+        // Get form values
+        const title = document.getElementById("projectTitle").value;
+        const highlight = document.getElementById("projectHighlight").value;
+        const description = document.getElementById("projectDescription").value;
+        const githubLink = document.getElementById("githubLink").value;
+        const slidePresentation = document.getElementById("slidePresentation").files[0];
+        const notebookPresentation = document.getElementById("notebookPresentation").files[0];
+        const videoUpload = document.getElementById("videoUpload").files[0];
+        const dashboardImage = document.getElementById("dashboardImage").files[0];
+        const visualizationUrl = document.getElementById("visualizationUrl").value;
+        const deploymentUrl = document.getElementById("deploymentUrl").value;
+        const comments = document.getElementById("comments").value;
+
+        if (title && highlight && description && githubLink) {
+            // Create a project object
+            const project = {
+                title,
+                highlight,
+                description,
+                githubLink,
+                slidePresentation: slidePresentation ? slidePresentation.name : null,
+                notebookPresentation: notebookPresentation ? notebookPresentation.name : null,
+                videoUpload: videoUpload ? videoUpload.name : null,
+                dashboardImage: dashboardImage ? dashboardImage.name : null,
+                visualizationUrl,
+                deploymentUrl,
+                comments
+            };
+
+            // Add the project to the array
+            projects.push(project);
+
+            // Create a new card
+            const container = document.getElementById("projectsContainer");
+            const card = document.createElement("div");
+            card.className = "project-card";
+            card.innerHTML = `
+                <h3>${title}</h3>
+                <p>${highlight}</p>
+                <a href="#" class="view-project" onclick="viewProject(${projects.length - 1})">View Project</a>
+            `;
+            container.appendChild(card);
+
+            // Clear the form
+            document.getElementById("projectForm").reset();
+            toggleForm(); // Hide the form
+            alert("Project added successfully!");
+        } else {
+            alert("Please fill in the required fields!");
+        }
+    }
+
+    function viewProject(index) {
+        // Redirect to project_details.html with the project data as URL parameters
+        const project = projects[index];
+        const queryString = new URLSearchParams(project).toString();
+        window.location.href = `project_details.html?${queryString}`;
+        }
+    </script>
 </body>
 </html>
