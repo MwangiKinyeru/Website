@@ -121,13 +121,16 @@
     </script>
 </head>
 <body>
-    <div class="project-details" id="projectDetails">
+     <div class="project-details" id="projectDetails">
         <h2>Project Details</h2>
         <p><strong>Title:</strong> <span id="title"></span></p>
         <p><strong>Highlight:</strong> <span id="highlight"></span></p>
         <p><strong>Description:</strong> <span id="description"></span></p>
 
-        <!-- File Sections -->
+        <p><strong>GitHub Link:</strong> <a id="githubLink" target="_blank"></a></p>
+        <p><strong>Data Analysis Link:</strong> <a id="visualizationUrl" target="_blank"></a></p>
+        <p><strong>Deployment URL:</strong> <a id="deploymentUrl" target="_blank"></a></p>
+
         <div class="file-section">
             <h3>Slide Presentation</h3>
             <iframe id="slidePresentation" width="100%" height="400px"></iframe>
@@ -141,6 +144,12 @@
         </div>
 
         <div class="file-section">
+            <h3>Dashboard Image</h3>
+            <iframe id="dashboardImage" width="100%" height="400px"></iframe>
+            <a id="imageDownload" download>Download Dashboard Image</a>
+        </div>
+
+        <div class="file-section">
             <h3>Video</h3>
             <video id="videoUpload" controls width="100%">
                 Your browser does not support the video tag.
@@ -148,71 +157,7 @@
             <a id="videoDownload" download>Download Video</a>
         </div>
 
-        <div class="file-section">
-            <h3>Dashboard Image</h3>
-            <img id="dashboardImage" src="" alt="Dashboard Image" width="100%">
-            <a id="imageDownload" download>Download Image</a>
-        </div>
-
-        <p><strong>GitHub Link:</strong> <a id="githubLink" target="_blank"></a></p>
-        <p><strong>Visualization URL:</strong> <a id="visualizationUrl" target="_blank"></a></p>
-        <p><strong>Deployment URL:</strong> <a id="deploymentUrl" target="_blank"></a></p>
         <p><strong>Comments:</strong> <span id="comments"></span></p>
     </div>
-
-    <script>
-        // Get the project details from the URL
-        const params = new URLSearchParams(window.location.search);
-
-        // Display the project details
-        document.getElementById("title").textContent = params.get("title") || "N/A";
-        document.getElementById("highlight").textContent = params.get("highlight") || "N/A";
-        document.getElementById("description").textContent = params.get("description") || "N/A";
-        document.getElementById("githubLink").href = params.get("githubLink") || "#";
-        document.getElementById("githubLink").textContent = params.get("githubLink") || "N/A";
-        document.getElementById("visualizationUrl").href = params.get("visualizationUrl") || "#";
-        document.getElementById("visualizationUrl").textContent = params.get("visualizationUrl") || "N/A";
-        document.getElementById("deploymentUrl").href = params.get("deploymentUrl") || "#";
-        document.getElementById("deploymentUrl").textContent = params.get("deploymentUrl") || "N/A";
-        document.getElementById("comments").textContent = params.get("comments") || "N/A";
-
-        // Display files
-        const slidePresentation = params.get("slidePresentation");
-        const notebookPresentation = params.get("notebookPresentation");
-        const videoUpload = params.get("videoUpload");
-        const dashboardImage = params.get("dashboardImage");
-
-        if (slidePresentation) {
-            document.getElementById("slidePresentation").src = slidePresentation;
-            document.getElementById("slideDownload").href = slidePresentation;
-        } else {
-            document.getElementById("slidePresentation").style.display = "none";
-            document.getElementById("slideDownload").style.display = "none";
-        }
-
-        if (notebookPresentation) {
-            document.getElementById("notebookPresentation").src = notebookPresentation;
-            document.getElementById("notebookDownload").href = notebookPresentation;
-        } else {
-            document.getElementById("notebookPresentation").style.display = "none";
-            document.getElementById("notebookDownload").style.display = "none";
-        }
-
-        if (videoUpload) {
-            document.getElementById("videoUpload").src = videoUpload;
-            document.getElementById("videoDownload").href = videoUpload;
-        } else {
-            document.getElementById("videoUpload").style.display = "none";
-            document.getElementById("videoDownload").style.display = "none";
-        }
-
-        if (dashboardImage) {
-            document.getElementById("dashboardImage").src = dashboardImage;
-            document.getElementById("imageDownload").href = dashboardImage;
-        } else {
-            document.getElementById("dashboardImage").style.display = "none";
-            document.getElementById("imageDownload").style.display = "none";
-        }
-    </script>
 </body>
 </html>
