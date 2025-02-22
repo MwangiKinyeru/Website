@@ -20,7 +20,58 @@
             .catch(error => {
                 console.error('Error loading navigation bar:', error);
             });
+
+        // Load the project details from the JSON file
+        fetch('/Website/projects.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to load project data');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Fetched Project Data:', data); // Check if data is loaded
+                const urlParams = new URLSearchParams(window.location.search);
+                const projectId = urlParams.get('id');
+                console.log('Project ID:', projectId); // Check if ID is captured
+
+                const project = data.projects.find(p => p.id === projectId);
+                if (project) {
+                    document.getElementById('title').textContent = project.title;
+                    document.getElementById('highlight').textContent = project.highlight;
+                    document.getElementById('description').textContent = project.description;
+
+                    document.getElementById('githubLink').textContent = project.githubLink;
+                    document.getElementById('githubLink').href = project.githubLink;
+
+                    document.getElementById('visualizationUrl').textContent = project.visualizationUrl;
+                    document.getElementById('visualizationUrl').href = project.visualizationUrl;
+
+                    document.getElementById('deploymentUrl').textContent = project.deploymentUrl;
+                    document.getElementById('deploymentUrl').href = project.deploymentUrl;
+
+                    document.getElementById('slidePresentation').src = project.slidePresentation;
+                    document.getElementById('slideDownload').href = project.slidePresentation;
+
+                    document.getElementById('notebookPresentation').src = project.notebookPresentation;
+                    document.getElementById('notebookDownload').href = project.notebookPresentation;
+
+                    document.getElementById('dashboardImage').src = project.dashboardImage;
+                    document.getElementById('imageDownload').href = project.dashboardImage;
+
+                    document.getElementById('videoUpload').src = project.videoUpload;
+                    document.getElementById('videoDownload').href = project.videoUpload;
+
+                    document.getElementById('comments').textContent = project.comments;
+                } else {
+                    console.error('No project found with ID:', projectId);
+                }
+            })
+            .catch(error => {
+                console.error('Error loading project data:', error);
+            });
     </script>
+
     <!-- Styling the page using CSS -->
     <style>
         nav {
@@ -118,23 +169,7 @@
             <a id="notebookDownload" download>Download Notebook</a>
         </div>
 
-        <div class="file-section">
-            <h3>Dashboard Image</h3>
-            <img id="dashboardImage" alt="Dashboard Image">
-            <a id="imageDownload" download>Download Dashboard Image</a>
-        </div>
-
-        <div class="file-section">
-            <h3>Video</h3>
-            <video id="videoUpload" controls width="100%">
-                Your browser does not support the video tag.
-            </video>
-            <a id="videoDownload" download>Download Video</a>
-        </div>
-
         <p><strong>Comments:</strong> <span id="comments"></span></p>
     </div>
-    
-    <script src="project-details.js"></script>
 </body>
 </html>
