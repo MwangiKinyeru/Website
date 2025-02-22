@@ -106,10 +106,12 @@
 
                     const project = data.find(p => p.title === projectTitle);
                     if (project) {
+                        // Populate text content
                         document.getElementById('title').textContent = project.title;
                         document.getElementById('highlight').textContent = project.highlight;
                         document.getElementById('description').textContent = project.description;
 
+                        // Populate links
                         document.getElementById('githubLink').href = project.githubLink;
                         document.getElementById('githubLink').textContent = project.githubLink;
 
@@ -119,18 +121,27 @@
                         document.getElementById('deploymentUrl').href = project.deploymentUrl;
                         document.getElementById('deploymentUrl').textContent = project.deploymentUrl;
 
-                        document.getElementById('slidePresentation').src = project.notebookLink;
+                        // Embed slide presentation (PDF)
+                        const slidePresentation = document.getElementById('slidePresentation');
+                        slidePresentation.src = project.notebookLink;
                         document.getElementById('slideDownload').href = project.notebookLink;
 
-                        document.getElementById('notebookPresentation').src = project.notebookLink;
+                        // Embed notebook (PDF or other supported format)
+                        const notebookPresentation = document.getElementById('notebookPresentation');
+                        notebookPresentation.src = project.notebookLink;
                         document.getElementById('notebookDownload').href = project.notebookLink;
 
-                        document.getElementById('dashboardImage').src = project.imageUrl;
-                        document.getElementById('imageDownload').href = project.imageUrl;
-
-                        document.getElementById('videoLink').src = project.videoLink;
+                        // Embed video
+                        const videoLink = document.getElementById('videoLink');
+                        videoLink.src = project.videoLink;
                         document.getElementById('videoDownload').href = project.videoLink;
 
+                        // Embed image
+                        const dashboardImage = document.getElementById('dashboardImage');
+                        dashboardImage.src = project.imageUrl;
+                        document.getElementById('imageDownload').href = project.imageUrl;
+
+                        // Populate comments
                         document.getElementById('comments').textContent = project.comments;
                     } else {
                         console.error('No project found with title:', projectTitle);
