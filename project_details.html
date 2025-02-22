@@ -53,14 +53,14 @@
                     document.getElementById('slidePresentation').src = project.slidePresentation;
                     document.getElementById('slideDownload').href = project.slidePresentation;
 
-                    document.getElementById('notebookPresentation').src = project.notebookPresentation;
-                    document.getElementById('notebookDownload').href = project.notebookPresentation;
+                    document.getElementById('notebookPresentation').src = project.notebookLink;
+                    document.getElementById('notebookDownload').href = project.notebookLink;
 
-                    document.getElementById('dashboardImage').src = project.dashboardImage;
-                    document.getElementById('imageDownload').href = project.dashboardImage;
+                    document.getElementById('dashboardImage').src = project.imageUrl;
+                    document.getElementById('imageDownload').href = project.imageUrl;
 
-                    document.getElementById('videoUpload').src = project.videoUpload;
-                    document.getElementById('videoDownload').href = project.videoUpload;
+                    document.getElementById('videoLink').src = project.videoLink;
+                    document.getElementById('videoDownload').href = project.videoLink;
 
                     document.getElementById('comments').textContent = project.comments;
                 } else {
@@ -167,6 +167,12 @@
             <h3>Notebook</h3>
             <iframe id="notebookPresentation" width="100%" height="400px"></iframe>
             <a id="notebookDownload" download>Download Notebook</a>
+        </div>
+
+        <div class="file-section">
+            <h3>Video</h3>
+            <video id="videoLink" width="100%" height="400px" controls></video>
+            <a id="videoDownload" download>Download Video</a>
         </div>
 
         <p><strong>Comments:</strong> <span id="comments"></span></p>
