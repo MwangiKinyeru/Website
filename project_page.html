@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects Page</title>
+    <title>The Projects</title>
     <script>
         // Load the navigation bar
-        fetch('navbar.html')
+        fetch('/Website/navbar.html')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Failed to load navigation bar');
@@ -21,16 +21,45 @@
             });
     </script>
     <style>
+        nav {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            background-color: lightgreen;
+            padding: 15px 0;
+            text-align: right;
+            padding-left: 20px;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            background-color: blue;
+            padding: 8px;
+            border-radius: 10px;
+        }
+
+        nav a:hover {
+            background-color: darkblue;
+        }
         body {
             font-family: Arial, sans-serif;
             background-color: white;
             margin-top: 60px;
             padding: 20px;
+            margin: 0;
         }
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-top: 20px; 
+            padding-top: 15px;
         }
         .btn {
             padding: 10px 15px;
@@ -40,9 +69,6 @@
             color: white;
             background-color: #007BFF;
             border-radius: 5px;
-        }
-        .btn.delete-mode {
-            background-color: red;
         }
         .projects-container {
             display: grid;
@@ -61,192 +87,92 @@
             flex-direction: column;
             justify-content: space-between;
         }
-        .checkbox {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            display: none;
-            width: 15px;
-            height: 15px;
-        }
-        .delete-mode-active .checkbox {
-            display: block;
-        }
-        .form-container {
-            display: none;
-            margin-top: 20px;
-            padding: 20px;
-            background-color: #f8f9fa;
-            border-radius: 8px;
-        }
-        .form-container label {
-            font-size: 14px;
-            font-weight: bold;
-            display: block;
-            margin-top: 8px;
-        }
-        .form-container input, .form-container textarea {
-            width: 100%;
-            padding: 8px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .form-container .file-upload {
-            display: flex;
-            flex-direction: column;
-            margin: 5px 0;
-        }
-        .form-container .file-upload label {
-            margin-bottom: 5px;
-        }
-        .form-container .file-upload span {
-            font-size: 12px;
-            color: #555;
-            margin-top: 3px;
-        }
-        .form-container button {
-            margin-top: 10px;
-        }
-        .view-project {
-            margin-top: auto;
-            display: inline-block;
-            padding: 5px 10px;
-            background-color: white;
-            color: #008B8B;
-            text-decoration: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>My Projects</h1>
         <div>
-            <button class="btn" onclick="toggleForm()">Add Project</button>
-            <button class="btn delete-mode" onclick="toggleDeleteMode()">Delete Mode</button>
+            <button class="btn" id="adminLoginBtn" onclick="adminLogin()">Admin Login</button>
+            <button class="btn" id="addProjectBtn" onclick="toggleForm()" style="display:none;">Add Project</button>
         </div>
     </div>
-    
-    <div class="form-container" id="projectForm">
+
+    <div class="form-container" id="projectForm" style="display:none;">
         <h3>Add New Project</h3>
-        <label>Project Title *</label>
-        <input type="text" id="projectTitle" placeholder="Project Title" required>
-        
-        <label>Project Highlight *</label>
-        <input type="text" id="projectHighlight" placeholder="Project Highlight" required>
-        
-        <label>Project Description *</label>
-        <textarea id="projectDescription" placeholder="Project Description" required></textarea>
-        
-        <label>GitHub *</label>
-        <input type="text" id="githubLink" placeholder="GitHub Link" required>
-        
-        <div class="file-upload">
-            <label>Upload Slide Presentation *</label>
-            <input type="file" id="slidePresentation" accept=".pdf,.ppt,.pptx">
-            <span>📁 Choose file (Accepted: .pdf, .ppt, .pptx)</span>
-        </div>
-        
-        <div class="file-upload">
-            <label>Upload Notebook (PDF only) *</label>
-            <input type="file" id="notebookPresentation" accept=".pdf">
-            <span>📁 Choose file (Accepted: .pdf)</span>
-        </div>
-        
-        <div class="file-upload">
-            <label>Upload Video (Optional)</label>
-            <input type="file" id="videoUpload" accept="video/*">
-            <span>📁 Choose file (Accepted: Video formats)</span>
-        </div>
-        
-        <div class="file-upload">
-            <label>Upload Dashboard Image (Optional)</label>
-            <input type="file" id="dashboardImage" accept="image/*">
-            <span>📁 Choose file (Accepted: Image formats)</span>
-        </div>
-        
-        <label>Visualization URL (Optional)</label>
-        <input type="text" id="visualizationUrl" placeholder="Visualization URL">
-        
-        <label>Deployment URL (Optional)</label>
-        <input type="text" id="deploymentUrl" placeholder="Deployment URL">
-        
-        <label>Comments (Optional)</label>
-        <textarea id="comments" placeholder="Comments"></textarea>
-        
-        <button class="btn" onclick="addProject()">Submit</button>
+        <form id="projectFormElement" onsubmit="addProject(event)">
+            <label>Project Title *</label><br>
+            <input type="text" id="projectTitle" placeholder="Project Title" required><br>
+            <label>Project Highlight *</label><br>
+            <input type="text" id="projectHighlight" placeholder="Project Highlight" required><br>
+            <label>Project Description *</label><br>
+            <textarea id="projectDescription" placeholder="Project Description" required></textarea><br>
+            <label>GitHub *</label><br>
+            <input type="text" id="githubLink" placeholder="GitHub Link" required><br>
+            <label>Notebook Presentation (PDF URL) *</label><br>
+            <input type="text" id="notebookPresentation" placeholder="PDF URL"><br>
+            <label>Video (Optional, URL)</label><br>
+            <input type="text" id="videoUpload" placeholder="Video URL"><br>
+            <label>Dashboard Image (Optional, URL)</label><br>
+            <input type="text" id="dashboardImage" placeholder="Image URL"><br>
+            <label>Visualization URL (Optional)</label><br>
+            <input type="text" id="visualizationUrl" placeholder="Visualization URL"><br>
+            <label>Deployment URL (Optional)</label><br>
+            <input type="text" id="deploymentUrl" placeholder="Deployment URL"><br>
+            <label>Comments (Optional)</label><br>
+            <textarea id="comments" placeholder="Comments"></textarea><br>
+            <button class="btn" type="submit">Submit</button>
+        </form>
     </div>
-    
+
     <div class="projects-container" id="projectsContainer"></div>
 
     <script>
-        // Declare the projects array
         let projects = [];
+
         function toggleForm() {
-            var form = document.getElementById("projectForm");
-            form.style.display = form.style.display === "none" || form.style.display === "" ? "block" : "none";
+            const form = document.getElementById("projectForm");
+            form.style.display = form.style.display === "none" ? "block" : "none";
         }
 
-        function addProject() {
-            // Get form values
+        function adminLogin() {
+            const password = prompt("Enter admin password:");
+            if (password === "yourSecretPassword") {
+                document.getElementById("addProjectBtn").style.display = "inline-block";
+                document.getElementById("adminLoginBtn").style.display = "none";
+                alert("Admin access granted.");
+            } else {
+                alert("Incorrect password!");
+            }
+        }
+
+        function addProject(event) {
+            event.preventDefault();
             const title = document.getElementById("projectTitle").value;
             const highlight = document.getElementById("projectHighlight").value;
             const description = document.getElementById("projectDescription").value;
             const githubLink = document.getElementById("githubLink").value;
-            const slidePresentation = document.getElementById("slidePresentation").files[0];
-            const notebookPresentation = document.getElementById("notebookPresentation").files[0];
-            const videoUpload = document.getElementById("videoUpload").files[0];
-            const dashboardImage = document.getElementById("dashboardImage").files[0];
-            const visualizationUrl = document.getElementById("visualizationUrl").value;
-            const deploymentUrl = document.getElementById("deploymentUrl").value;
-            const comments = document.getElementById("comments").value;
 
             if (title && highlight && description && githubLink) {
-                // Create a project object
-                const project = {
-                    title,
-                    highlight,
-                    description,
-                    githubLink,
-                    slidePresentation: slidePresentation ? slidePresentation.name : null,
-                    notebookPresentation: notebookPresentation ? notebookPresentation.name : null,
-                    videoUpload: videoUpload ? videoUpload.name : null,
-                    dashboardImage: dashboardImage ? dashboardImage.name : null,
-                    visualizationUrl,
-                    deploymentUrl,
-                    comments
-                };
-
-                // Add the project to the array
+                const project = { title, highlight, description, githubLink };
                 projects.push(project);
 
-                // Create a new card
                 const container = document.getElementById("projectsContainer");
                 const card = document.createElement("div");
                 card.className = "project-card";
                 card.innerHTML = `
                     <h3>${title}</h3>
                     <p>${highlight}</p>
-                    <a href="#" class="view-project" onclick="viewProject(${projects.length - 1})">View Project</a>
+                    <a href="project_details.html?title=${encodeURIComponent(title)}" class="view-project">View Project</a>
                 `;
                 container.appendChild(card);
 
-                // Clear the form
-                document.getElementById("projectForm").reset();
-                toggleForm(); // Hide the form
+                document.getElementById("projectFormElement").reset();
+                toggleForm();
                 alert("Project added successfully!");
             } else {
                 alert("Please fill in the required fields!");
             }
-        }
-
-        function viewProject(index) {
-            // Redirect to project_details.html with the project data as URL parameters
-            const project = projects[index];
-            const queryString = new URLSearchParams(project).toString();
-            window.location.href = `project_details.html?${queryString}`;
         }
     </script>
 </body>
