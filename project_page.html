@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Projects</title>
+    
+    <!-- Load the navigation bar -->
     <script>
-        // Load the navigation bar
         fetch('/Website/navbar.html')
             .then(response => {
                 if (!response.ok) {
@@ -16,10 +17,10 @@
             .then(data => {
                 document.body.insertAdjacentHTML('afterbegin', data);
             })
-            .catch(error => {
-                console.error('Error loading navigation bar:', error);
-            });
+            .catch(error => console.error('Error loading navigation bar:', error));
     </script>
+    
+    <!-- Styles for the page -->
     <style>
         nav {
             position: fixed;
@@ -32,7 +33,6 @@
             padding-left: 20px;
             z-index: 1000;
         }
-
         nav a {
             color: white;
             text-decoration: none;
@@ -43,7 +43,6 @@
             padding: 8px;
             border-radius: 10px;
         }
-
         nav a:hover {
             background-color: darkblue;
         }
@@ -89,7 +88,9 @@
         }
     </style>
 </head>
+
 <body>
+    <!-- Header with buttons -->
     <div class="header">
         <h1>My Projects</h1>
         <div>
@@ -98,6 +99,7 @@
         </div>
     </div>
 
+    <!-- Add Project Form (Initially Hidden) -->
     <div class="form-container" id="projectForm" style="display:none;">
         <h3>Add New Project</h3>
         <form id="projectFormElement" onsubmit="addProject(event)">
@@ -109,32 +111,51 @@
             <textarea id="projectDescription" placeholder="Project Description" required></textarea><br>
             <label>GitHub *</label><br>
             <input type="text" id="githubLink" placeholder="GitHub Link" required><br>
-            <label>Notebook Presentation (PDF URL) *</label><br>
-            <input type="text" id="notebookPresentation" placeholder="PDF URL"><br>
-            <label>Video (Optional, URL)</label><br>
-            <input type="text" id="videoUpload" placeholder="Video URL"><br>
-            <label>Dashboard Image (Optional, URL)</label><br>
-            <input type="text" id="dashboardImage" placeholder="Image URL"><br>
-            <label>Visualization URL (Optional)</label><br>
-            <input type="text" id="visualizationUrl" placeholder="Visualization URL"><br>
-            <label>Deployment URL (Optional)</label><br>
-            <input type="text" id="deploymentUrl" placeholder="Deployment URL"><br>
-            <label>Comments (Optional)</label><br>
-            <textarea id="comments" placeholder="Comments"></textarea><br>
             <button class="btn" type="submit">Submit</button>
         </form>
     </div>
 
+    <!-- Container for displaying projects -->
     <div class="projects-container" id="projectsContainer"></div>
 
+    <!-- JavaScript to handle dynamic functionality -->
     <script>
         let projects = [];
 
+        // Load projects from projects.json file
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch('/Website/projects.json')
+                .then(response => response.json())
+                .then(data => {
+                    projects = data; // Populate global projects array
+                    displayProjects(); // Display loaded projects
+                })
+                .catch(error => console.error("Error loading project data:", error));
+        });
+
+        // Function to display projects on the page
+        function displayProjects() {
+            const container = document.getElementById("projectsContainer");
+            container.innerHTML = ""; // Clear previous projects
+            projects.forEach(project => {
+                const card = document.createElement("div");
+                card.className = "project-card";
+                card.innerHTML = `
+                    <h3>${project.title}</h3>
+                    <p>${project.highlight}</p>
+                    <a href="project_details.html?title=${encodeURIComponent(project.title)}" class="view-project">View Project</a>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Toggle visibility of the Add Project form
         function toggleForm() {
             const form = document.getElementById("projectForm");
             form.style.display = form.style.display === "none" ? "block" : "none";
         }
 
+        // Handle admin login
         function adminLogin() {
             const password = prompt("Enter admin password:");
             if (password === "yourSecretPassword") {
@@ -146,8 +167,11 @@
             }
         }
 
+        // Add a new project and update the display
         function addProject(event) {
             event.preventDefault();
+            
+            // Collect input values
             const title = document.getElementById("projectTitle").value;
             const highlight = document.getElementById("projectHighlight").value;
             const description = document.getElementById("projectDescription").value;
@@ -155,18 +179,10 @@
 
             if (title && highlight && description && githubLink) {
                 const project = { title, highlight, description, githubLink };
-                projects.push(project);
-
-                const container = document.getElementById("projectsContainer");
-                const card = document.createElement("div");
-                card.className = "project-card";
-                card.innerHTML = `
-                    <h3>${title}</h3>
-                    <p>${highlight}</p>
-                    <a href="project_details.html?title=${encodeURIComponent(title)}" class="view-project">View Project</a>
-                `;
-                container.appendChild(card);
-
+                projects.push(project); // Add to the global array
+                displayProjects(); // Refresh the displayed projects
+                
+                // Clear form and hide
                 document.getElementById("projectFormElement").reset();
                 toggleForm();
                 alert("Project added successfully!");
