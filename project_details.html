@@ -32,10 +32,10 @@
             .then(data => {
                 console.log('Fetched Project Data:', data); // Check if data is loaded
                 const urlParams = new URLSearchParams(window.location.search);
-                const projectId = urlParams.get('id');
-                console.log('Project ID:', projectId); // Check if ID is captured
+                const projectTitle = urlParams.get('title');
+                console.log('Project Title:', projectTitle); // Check if title is captured
 
-                const project = data.projects.find(p => p.id === projectId);
+                const project = data.projects.find(p => p.title === projectTitle);
                 if (project) {
                     document.getElementById('title').textContent = project.title;
                     document.getElementById('highlight').textContent = project.highlight;
@@ -64,7 +64,7 @@
 
                     document.getElementById('comments').textContent = project.comments;
                 } else {
-                    console.error('No project found with ID:', projectId);
+                    console.error('No project found with title:', projectTitle);
                 }
             })
             .catch(error => {
