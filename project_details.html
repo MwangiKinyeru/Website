@@ -128,7 +128,7 @@
 
                         // Embed notebook (PDF or other supported format)
                         const notebookPresentation = document.getElementById('notebookPresentation');
-                        notebookPresentation.src = project.notebookLink;
+                        notebookPresentation.src = "https://1drv.ms/b/c/3524a09a1107f8a6/IQSjnd6itcdiQpca8Kt4euXDAXVpzi_rcq4A3EKd2pgs1ZA";
                         document.getElementById('notebookDownload').href = project.notebookLink;
 
                         // Embed video dynamically
@@ -190,7 +190,14 @@
 
         <div class="file-section">
             <h3>Notebook</h3>
-            <iframe id="notebookPresentation" width="100%" height="400px"></iframe>
+            <iframe 
+                id="notebookPresentation" 
+                src="https://1drv.ms/b/c/3524a09a1107f8a6/IQSjnd6itcdiQpca8Kt4euXDAXVpzi_rcq4A3EKd2pgs1ZA" 
+                width="100%" 
+                height="400px" 
+                frameborder="0" 
+                scrolling="no">
+            </iframe>
             <a id="notebookDownload" download>Download Notebook</a>
         </div>
 
