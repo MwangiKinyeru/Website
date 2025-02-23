@@ -86,6 +86,21 @@
         .file-section a:hover {
             text-decoration: underline;
         }
+        .dashboard-image {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .dashboard-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .comments-section {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f1f1f1;
+            border-radius: 8px;
+        }
     </style>
 
     <!-- Script to load project details -->
@@ -147,13 +162,17 @@
                             <a id="videoDownload" href="${project.videoLink}" download>Download Video</a>
                         `;
 
-                        // Embed image
+                        // Embed dashboard image below the video
                         const dashboardImage = document.getElementById('dashboardImage');
                         dashboardImage.src = project.imageUrl;
                         document.getElementById('imageDownload').href = project.imageUrl;
 
                         // Populate comments
-                        document.getElementById('comments').textContent = project.comments;
+                        const commentsSection = document.getElementById('commentsSection');
+                        commentsSection.innerHTML = `
+                            <h3>Comments</h3>
+                            <p>${project.comments}</p>
+                        `;
                     } else {
                         console.error('No project found with title:', projectTitle);
                     }
@@ -206,7 +225,15 @@
             <div id="videoSection"></div>
         </div>
 
-        <p><strong>Comments:</strong> <span id="comments"></span></p>
+        <!-- Dashboard Image Section -->
+        <div class="dashboard-image">
+            <h3>Dashboard Image</h3>
+            <img id="dashboardImage" alt="Dashboard Image">
+            <a id="imageDownload" download>Download Dashboard Image</a>
+        </div>
+
+        <!-- Comments Section -->
+        <div id="commentsSection" class="comments-section"></div>
     </div>
 </body>
 </html>
