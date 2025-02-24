@@ -102,15 +102,6 @@
             background-color: #f1f1f1;
             border-radius: 8px;
         }
-        /* Ensure notebook iframe is always at 100% zoom */
-        .notebook-iframe {
-            width: 100%;
-            height: 800px; /* Adjust height as needed */
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            transform: scale(1);
-            transform-origin: 0 0;
-        }
     </style>
 
     <!-- Script to load project details -->
@@ -153,7 +144,7 @@
 
                         // Embed notebook (PDF or other supported format)
                         const notebookPresentation = document.getElementById('notebookPresentation');
-                        notebookPresentation.src = project.notebookLink; // Use the notebook link from JSON
+                        notebookPresentation.src = "https://1drv.ms/b/c/3524a09a1107f8a6/IQSjnd6itcdiQpca8Kt4euXDAXVpzi_rcq4A3EKd2pgs1ZA";
                         document.getElementById('notebookDownload').href = project.notebookLink;
 
                         // Embed video dynamically
@@ -222,21 +213,20 @@
                 frameborder="0" 
                 scrolling="no">
             </iframe>
-            <a id="slideDownload" download>Download Slide Presentation</a>
+            <a id="slideDownload" href="#" onclick="downloadFile('${project.notebookLink}', 'slide-presentation.pdf')">Download Slide Presentation</a>
         </div>
 
         <div class="file-section">
             <h3>Notebook</h3>
             <iframe 
                 id="notebookPresentation" 
-                class="notebook-iframe" 
-                src="" 
+                src="https://1drv.ms/b/c/3524a09a1107f8a6/IQSjnd6itcdiQpca8Kt4euXDAXVpzi_rcq4A3EKd2pgs1ZA" 
                 width="100%" 
-                height="800px" 
+                height="400px" 
                 frameborder="0" 
                 scrolling="no">
             </iframe>
-            <a id="notebookDownload" download>Download Notebook</a>
+            <a id="notebookDownload" href="#" onclick="downloadFile('${project.notebookLink}', 'notebook.pdf')">Download Notebook</a>
         </div>
 
         <div class="file-section">
@@ -253,5 +243,16 @@
         <!-- Comments Section -->
         <div id="commentsSection" class="comments-section"></div>
     </div>
+
+    <script>
+        function downloadFile(url, filename) {
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
 </body>
 </html>
