@@ -30,5 +30,17 @@
         "imageUrl": "https://github.com/MwangiKinyeru/Book-Recommendation-system/blob/main/UI%20Overview.png",
         "visualizationUrl": "https://github.com/MwangiKinyeru/Book-Recommendation-system/blob/main/UI%20preview%202.png",
         "deploymentLink": "https://mwangikinyeru-book-recommendation-sy-book-recommendation-cjfods.streamlit.app/",
-        "comments": "Very good and accurate project."}
+        "comments": "Very good and accurate project."},
+    {
+        "title": "Book Recommendation System",
+        "highlight": "Develops a content-based book recommendation system using TF-IDF and cosine similarity.",
+        "description": "This project creates a book recommendation system that suggests personalized books based on user input, such as a book title, author, or publisher. It uses text analysis techniques (TF-IDF and cosine similarity) to find and recommend the top 10 similar books. The system focuses on cleaning and organizing data, making it easy to scale for use in online bookstores, libraries, or schools. The data comes from Goodreads and is cleaned to ensure accurate suggestions. Following a structured approach (CRISP-DM), the system improves user experience by offering tailored recommendations. If no match is found, it prompts users to try a different input.",
+        "githubLink": "https://github.com/MwangiKinyeru",
+        "notebookLink": "https://drive.google.com/uc?export=download&id=1UtbVkJACIwTJpSTKVfRSG1OMisz_MkUw",
+        "videoLink": "https://www.youtube.com/embed/R2RgYhpDzo0",
+        "imageUrl": "https://github.com/MwangiKinyeru/Book-Recommendation-system/blob/main/UI%20Overview.png",
+        "visualizationUrl": "https://github.com/MwangiKinyeru/Book-Recommendation-system/blob/main/UI%20preview%202.png",
+        "deploymentLink": "https://mwangikinyeru-book-recommendation-sy-book-recommendation-cjfods.streamlit.app/",
+        "comments": "Very good and accurate project."
+    }
 ]
