@@ -86,13 +86,14 @@
         .file-section a:hover {
             text-decoration: underline;
         }
-        .dashboard-image {
+        .dashboard-embed {
             margin-top: 20px;
             text-align: center;
         }
-        .dashboard-image img {
-            max-width: 100%;
-            height: auto;
+        .dashboard-embed iframe {
+            width: 100%;
+            height: 500px; /* Adjust height as needed */
+            border: 1px solid #ddd;
             border-radius: 8px;
         }
         .comments-section {
@@ -162,10 +163,18 @@
                             <a id="videoDownload" href="${project.videoLink}" download>Download Video</a>
                         `;
 
-                        // Embed dashboard image below the video
-                        const dashboardImage = document.getElementById('dashboardImage');
-                        dashboardImage.src = project.imageUrl;
-                        document.getElementById('imageDownload').href = project.imageUrl;
+                        // Embed dashboard dynamically
+                        const dashboardEmbed = document.getElementById('dashboardEmbed');
+                        dashboardEmbed.innerHTML = `
+                            <iframe 
+                                src="${project.visualizationUrl}" 
+                                width="100%" 
+                                height="500px" 
+                                frameborder="0" 
+                                scrolling="no">
+                            </iframe>
+                            <a id="dashboardDownload" href="${project.visualizationUrl}" download>Download Dashboard</a>
+                        `;
 
                         // Populate comments
                         const commentsSection = document.getElementById('commentsSection');
@@ -225,11 +234,10 @@
             <div id="videoSection"></div>
         </div>
 
-        <!-- Dashboard Image Section -->
-        <div class="dashboard-image">
-            <h3>Dashboard Image</h3>
-            <img id="dashboardImage" alt="Dashboard Image">
-            <a id="imageDownload" download>Download Dashboard Image</a>
+        <!-- Embedded Dashboard Section -->
+        <div class="dashboard-embed">
+            <h3>Dashboard</h3>
+            <div id="dashboardEmbed"></div>
         </div>
 
         <!-- Comments Section -->
