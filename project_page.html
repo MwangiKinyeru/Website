@@ -73,9 +73,10 @@
         /* Projects Container */
         .projects-container {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr); /* 3 columns per row */
             gap: 20px;
             margin-top: 20px;
+            direction: rtl; /* Right-to-left layout */
         }
 
         /* Project Card */
@@ -98,6 +99,7 @@
             overflow: hidden; /* Hide overflow */
             text-overflow: ellipsis; /* Show ellipsis for truncated text */
             margin: 0; /* Remove default margin */
+            width: 100%; /* Ensure text container takes full width */
         }
 
         .project-card h3 {
