@@ -90,41 +90,10 @@
 </head>
 
 <body>
-    <!-- Header with buttons -->
+    <!-- Header -->
     <div class="header">
         <h1>My Projects</h1>
-        <div>
-            <button class="btn" id="adminLoginBtn" onclick="adminLogin()">Admin Login</button>
-            <button class="btn" id="addProjectBtn" onclick="toggleForm()" style="display:none;">Add Project</button>
-        </div>
-    </div>
-
-    <!-- Add Project Form (Initially Hidden) -->
-    <div class="form-container" id="projectForm" style="display:none;">
-        <h3>Add New Project</h3>
-        <form id="projectFormElement" onsubmit="addProject(event)">
-            <label>Project Title *</label><br>
-            <input type="text" id="projectTitle" placeholder="Project Title" required><br>
-            <label>Project Highlight *</label><br>
-            <input type="text" id="projectHighlight" placeholder="Project Highlight" required><br>
-            <label>Project Description *</label><br>
-            <textarea id="projectDescription" placeholder="Project Description" required></textarea><br>
-            <label>GitHub *</label><br>
-            <input type="text" id="githubLink" placeholder="GitHub Link" required><br>
-            <label>Notebook Presentation (PDF URL) *</label><br>
-            <input type="text" id="notebookPresentation" placeholder="PDF URL"><br>
-            <label>Video (Optional, URL)</label><br>
-            <input type="text" id="videoUpload" placeholder="Video URL"><br>
-            <label>Dashboard Image (Optional, URL)</label><br>
-            <input type="text" id="dashboardImage" placeholder="Image URL"><br>
-            <label>Visualization URL (Optional)</label><br>
-            <input type="text" id="visualizationUrl" placeholder="Visualization URL"><br>
-            <label>Deployment URL (Optional)</label><br>
-            <input type="text" id="deploymentUrl" placeholder="Deployment URL"><br>
-            <label>Comments (Optional)</label><br>
-            <textarea id="comments" placeholder="Comments"></textarea><br>
-            <button class="btn" type="submit">Submit</button>
-        </form>
+        <!-- Removed Admin Login and Add Project buttons -->
     </div>
 
     <!-- Container for displaying projects -->
@@ -159,48 +128,6 @@
                 `;
                 container.appendChild(card);
             });
-        }
-
-        // Toggle visibility of the Add Project form
-        function toggleForm() {
-            const form = document.getElementById("projectForm");
-            form.style.display = form.style.display === "none" ? "block" : "none";
-        }
-
-        // Handle admin login
-        function adminLogin() {
-            const password = prompt("Enter admin password:");
-            if (password === "yourSecretPassword") {
-                document.getElementById("addProjectBtn").style.display = "inline-block";
-                document.getElementById("adminLoginBtn").style.display = "none";
-                alert("Admin access granted.");
-            } else {
-                alert("Incorrect password!");
-            }
-        }
-
-        // Add a new project and update the display
-        function addProject(event) {
-            event.preventDefault();
-            
-            // Collect input values
-            const title = document.getElementById("projectTitle").value;
-            const highlight = document.getElementById("projectHighlight").value;
-            const description = document.getElementById("projectDescription").value;
-            const githubLink = document.getElementById("githubLink").value;
-
-            if (title && highlight && description && githubLink) {
-                const project = { title, highlight, description, githubLink };
-                projects.push(project); // Add to the global array
-                displayProjects(); // Refresh the displayed projects
-                
-                // Clear form and hide
-                document.getElementById("projectFormElement").reset();
-                toggleForm();
-                alert("Project added successfully!");
-            } else {
-                alert("Please fill in the required fields!");
-            }
         }
     </script>
 </body>
