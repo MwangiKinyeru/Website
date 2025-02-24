@@ -4,12 +4,8 @@
     <meta charset="UTF-8">
     <meta name="description" content="Martin Waweru's Data Science Portfolio. Explore projects, insights, and connect.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- setting the page title -->
     <title>About | Martin Waweru</title>
-    <!-- Adding Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Adding the sticky navigation bar -->
-    <!-- Add this script to load the navigation bar -->
     <script>
         // Load the navigation bar
         fetch('/Website/navbar.html')
@@ -27,7 +23,7 @@
             });
     </script>
     <style>
-        /* Since we are styling we use CSS */
+        /* Navigation Bar */
         nav {
             position: fixed;
             top: 0;
@@ -54,8 +50,9 @@
         nav a:hover {
             background-color: darkblue;
         }
-        /* adding space to avoid text been hidden by nav tab*/
-        body{
+
+        /* Body and Header */
+        body {
             margin-top: 60px;
             margin-bottom: 50px;
             font-family: Arial, sans-serif;
@@ -67,24 +64,7 @@
             overflow: hidden;
         }
 
-        /* Back button styling */
-        .back-button {
-            position: fixed;
-            top: 15px;
-            right: 20px;
-            background-color: blue;
-            color: white;
-            font-size: 16px;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-
-        .back-button:hover {
-            background-color: darkblue;
-        }
-        /* Adding the Profile Picture*/
+        /* Profile Picture Section */
         .profile-container {
             display: flex;
             width: 100%;
@@ -172,18 +152,18 @@
             background-color: darkblue;
         }
 
-       .dropdown-content {
+        .dropdown-content {
             display: none;
             position: absolute;
             background-color: white;
             border: 1px solid #ccc;
-            width: 100%; /* Same width as the dashboard button */
+            width: 80%; /* Same width as the dashboard button */
             max-height: 150px;
             overflow-y: auto;
             z-index: 1000;
             box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
             top: 100%; /* Position below the dashboard */
-            left: 0;
+            left: 10%; /* Align with the dashboard button */
         }
 
         .dropdown-content a {
@@ -209,18 +189,14 @@
             display: block;
         }
 
-        .profile-right {
-            padding: 30px;
-            text-align: left;
-            flex: 5;
-        }
-        /* setting Footer styling for LinkedIn and GitHub */
+        /* Footer styling for LinkedIn and GitHub */
         .footer {
             position: fixed;
             bottom: 10px;
             right: 20px;
             text-align: right;
         }
+
         .footer a {
             color: white;
             font-size: 12px;
@@ -255,7 +231,6 @@
         .file-input {
             display: none;
         }
-
     </style>
 </head>
 <body>
@@ -263,13 +238,11 @@
     <section class="profile-container">
         <div class="profile-left">
             <div class="profile-pic-container">
-                <!-- Profile picture is now manually controlled -->
                 <img src="https://raw.githubusercontent.com/MwangiKinyeru/Website/main/profile.jpg" alt="Profile Picture" id="profile-pic">
             </div>
             <h2>Martin Waweru</h2>
             <p class="quote">"Data is the new oil, and I'm here to refine it."</p>
-            <input type="text" class="search-bar" placeholder="🔍Search projects..." oninput="filterProjects()">
-            <!--<div class="dashboard">📈Dashboard</div>-->
+            <input type="text" class="search-bar" id="search-bar" placeholder="🔍Search projects..." oninput="filterProjects()">
             <div class="dashboard" onclick="toggleDropdown()">
                 📈Dashboard
                 <div class="dropdown-content" id="dropdown-content">
@@ -306,6 +279,21 @@
             dropdown.classList.toggle('show');
         }
 
+        // Function to fetch projects from the server
+        async function fetchProjects() {
+            try {
+                const response = await fetch('/Website/projects.json'); // Replace with your JSON file path
+                if (!response.ok) {
+                    throw new Error('Failed to load projects');
+                }
+                const data = await response.json();
+                return data.map(project => project.title); // Extract project titles
+            } catch (error) {
+                console.error('Error fetching projects:', error);
+                return [];
+            }
+        }
+
         // Function to filter projects based on search input
         function filterProjects() {
             const searchTerm = document.getElementById('search-bar').value.toLowerCase();
@@ -320,27 +308,32 @@
             dropdownContent.innerHTML = '';
             projects.forEach(project => {
                 const link = document.createElement('a');
-                link.href = `#${project}`; // Replace with actual project link
+                link.href = `project_details.html?title=${encodeURIComponent(project)}`; // Link to project details
                 link.textContent = project;
+                link.title = project; // Show full title on hover
                 dropdownContent.appendChild(link);
             });
         }
 
-        // Function to add a new project
-        function addProject(title) {
-            const projects = JSON.parse(localStorage.getItem('projects')) || [];
-            projects.push(title);
-            localStorage.setItem('projects', JSON.stringify(projects));
-            updateDropdown(projects);
+        // Function to load and display projects
+        async function loadProjects() {
+            const projects = await fetchProjects(); // Fetch projects from the server
+            localStorage.setItem('projects', JSON.stringify(projects)); // Save to localStorage
+            updateDropdown(projects); // Update the dropdown
         }
 
         // Load projects on page load
         window.onload = function () {
-            const projects = JSON.parse(localStorage.getItem('projects')) || [];
-            updateDropdown(projects);
+            loadProjects();
         };
 
         // Example: Add a new project (for testing)
+        // function addProject(title) {
+        //     const projects = JSON.parse(localStorage.getItem('projects')) || [];
+        //     projects.push(title);
+        //     localStorage.setItem('projects', JSON.stringify(projects));
+        //     updateDropdown(projects);
+        // }
         // addProject('Data Analysis Dashboard');
     </script>
 </body>
