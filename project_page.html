@@ -115,6 +115,19 @@
             align-self: flex-start; /* Align button to the left */
             margin-top: 10px; /* Add some space above the button */
         }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .projects-container {
+                grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .projects-container {
+                grid-template-columns: 1fr; /* 1 column for mobile */
+            }
+        }
     </style>
 </head>
 
