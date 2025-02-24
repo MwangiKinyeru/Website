@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="Martin Waweru's Data Science Portfolio. Explore projects, insights, and connect.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- setting the page title -->
     <title>About | Martin Waweru</title>
     <!-- Adding Font Awesome for icons -->
@@ -23,18 +25,6 @@
             .catch(error => {
                 console.error('Error loading navigation bar:', error);
             });
-        // Function to handle profile picture upload
-        function handleProfilePictureUpload(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    const profilePic = document.getElementById('profile-pic');
-                    profilePic.src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        }
     </script>
     <style>
         /* Since we are styling we use CSS */
@@ -273,11 +263,8 @@
     <section class="profile-container">
         <div class="profile-left">
             <div class="profile-pic-container">
-                <img src="profile.jpg" alt="Profile Picture" id="profile-pic">
-                <label for="file-input" class="camera-icon">
-                    <i class="fas fa-camera"></i>
-                </label>
-                <input type="file" id="file-input" class="file-input" accept="image/*" onchange="handleProfilePictureUpload(event)">
+                <!-- Profile picture is now manually controlled -->
+                <img src="https://raw.githubusercontent.com/MwangiKinyeru/Website/main/profile.jpg" alt="Profile Picture" id="profile-pic">
             </div>
             <h2>Martin Waweru</h2>
             <p class="quote">"Data is the new oil, and I'm here to refine it."</p>
@@ -313,19 +300,6 @@
       <a href="https://github.com/MwangiKinyeru" target="_blank">🐙GitHub</a>
     </footer>
      <script>
-        // Function to handle profile picture upload
-        function handleProfilePictureUpload(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    const profilePic = document.getElementById('profile-pic');
-                    profilePic.src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
         // Function to toggle the dropdown
         function toggleDropdown() {
             const dropdown = document.getElementById('dropdown-content');
