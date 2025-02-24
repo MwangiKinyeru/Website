@@ -85,10 +85,27 @@
             border-radius: 8px;
             color: white;
             position: relative;
-            height: 150px;
+            height: 150px; /* Fixed height for consistency */
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+        }
+
+        /* Truncate Long Text */
+        .project-card h3,
+        .project-card p {
+            white-space: nowrap; /* Prevent text from wrapping */
+            overflow: hidden; /* Hide overflow */
+            text-overflow: ellipsis; /* Show ellipsis for truncated text */
+            margin: 0; /* Remove default margin */
+        }
+
+        .project-card h3 {
+            font-size: 18px;
+        }
+
+        .project-card p {
+            font-size: 14px;
         }
 
         /* View Project Button */
@@ -132,8 +149,8 @@
                 const card = document.createElement("div");
                 card.className = "project-card";
                 card.innerHTML = `
-                    <h3>${project.title}</h3>
-                    <p>${project.highlight}</p>
+                    <h3 title="${project.title}">${project.title}</h3>
+                    <p title="${project.highlight}">${project.highlight}</p>
                     <a href="project_details.html?title=${encodeURIComponent(project.title)}" class="btn view-project">View Project</a>
                 `;
                 container.appendChild(card);
