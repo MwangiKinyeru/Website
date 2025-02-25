@@ -309,7 +309,7 @@
             projects.forEach(project => {
                 const link = document.createElement('a');
                 link.href = `project_details.html?title=${encodeURIComponent(project)}`; // Link to project details
-                link.textContent = project;
+                link.textContent = project.length > 20 ? `${project.substring(0, 20)}...` : project; // Truncate long titles
                 link.title = project; // Show full title on hover
                 dropdownContent.appendChild(link);
             });
