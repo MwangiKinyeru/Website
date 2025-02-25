@@ -2,12 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- setting the page title -->
+    <meta name="description" content="Martin Waweru's Data Science Portfolio. Explore projects, insights, and connect.">
     <title>About | Martin Waweru</title>
-    <!-- Adding Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Adding the sticky navigation bar -->
-    <!-- Add this script to load the navigation bar -->
     <script>
         // Load the navigation bar
         fetch('/Website/navbar.html')
@@ -23,21 +20,9 @@
             .catch(error => {
                 console.error('Error loading navigation bar:', error);
             });
-        // Function to handle profile picture upload
-        function handleProfilePictureUpload(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    const profilePic = document.getElementById('profile-pic');
-                    profilePic.src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        }
     </script>
     <style>
-        /* Since we are styling we use CSS */
+        /* Navigation Bar */
         nav {
             position: fixed;
             top: 0;
@@ -64,8 +49,9 @@
         nav a:hover {
             background-color: darkblue;
         }
-        /* adding space to avoid text been hidden by nav tab*/
-        body{
+
+        /* Body and Header */
+        body {
             margin-top: 60px;
             margin-bottom: 50px;
             font-family: Arial, sans-serif;
@@ -77,24 +63,7 @@
             overflow: hidden;
         }
 
-        /* Back button styling */
-        .back-button {
-            position: fixed;
-            top: 15px;
-            right: 20px;
-            background-color: blue;
-            color: white;
-            font-size: 16px;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-
-        .back-button:hover {
-            background-color: darkblue;
-        }
-        /* Adding the Profile Picture*/
+        /* Profile Picture Section */
         .profile-container {
             display: flex;
             width: 100%;
@@ -182,18 +151,18 @@
             background-color: darkblue;
         }
 
-       .dropdown-content {
+        .dropdown-content {
             display: none;
             position: absolute;
             background-color: white;
             border: 1px solid #ccc;
-            width: 100%; /* Same width as the dashboard button */
+            width: 80%; 
             max-height: 150px;
             overflow-y: auto;
             z-index: 1000;
             box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-            top: 100%; /* Position below the dashboard */
-            left: 0;
+            top: 100%; 
+            left: 10%; 
         }
 
         .dropdown-content a {
@@ -202,15 +171,15 @@
             text-decoration: none;
             display: block;
             font-size: 12px;
-            white-space: nowrap; /* Prevent text from wrapping */
-            overflow: hidden; /* Hide overflow */
-            text-overflow: ellipsis; /* Add ellipsis for long text */
-            position: relative; /* For hover effect */
+            white-space: nowrap;
+            overflow: hidden; 
+            text-overflow: ellipsis; 
+            position: relative; 
         }
 
         .dropdown-content a:hover {
             background-color: #f1f1f1;
-            overflow: visible; /* Show full text on hover */
+            overflow: visible; 
             white-space: normal; /* Allow text to wrap */
             z-index: 1001; /* Ensure hovered item is on top */
         }
@@ -219,18 +188,14 @@
             display: block;
         }
 
-        .profile-right {
-            padding: 30px;
-            text-align: left;
-            flex: 5;
-        }
-        /* setting Footer styling for LinkedIn and GitHub */
+        /* Footer styling for LinkedIn and GitHub */
         .footer {
             position: fixed;
             bottom: 10px;
             right: 20px;
             text-align: right;
         }
+
         .footer a {
             color: white;
             font-size: 12px;
@@ -266,23 +231,32 @@
             display: none;
         }
 
+        /* Hide label visually but keep it accessible to screen readers */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
     </style>
 </head>
 <body>
+    <!-- Navigation Bar (loaded dynamically via JavaScript) -->
+
     <!-- Profile Picture Section -->
     <section class="profile-container">
         <div class="profile-left">
             <div class="profile-pic-container">
-                <img src="profile.jpg" alt="Profile Picture" id="profile-pic">
-                <label for="file-input" class="camera-icon">
-                    <i class="fas fa-camera"></i>
-                </label>
-                <input type="file" id="file-input" class="file-input" accept="image/*" onchange="handleProfilePictureUpload(event)">
+                <img src="https://raw.githubusercontent.com/MwangiKinyeru/Website/main/profile.jpg" alt="Profile Picture" id="profile-pic">
             </div>
             <h2>Martin Waweru</h2>
             <p class="quote">"Data is the new oil, and I'm here to refine it."</p>
-            <input type="text" class="search-bar" placeholder="🔍Search projects..." oninput="filterProjects()">
-            <!--<div class="dashboard">📈Dashboard</div>-->
+            <label for="search-bar" class="sr-only">Search Projects</label>
+            <input type="text" id="search-bar" name="search-bar" class="search-bar" placeholder="🔍Search projects..." oninput="filterProjects()">
             <div class="dashboard" onclick="toggleDropdown()">
                 📈Dashboard
                 <div class="dropdown-content" id="dropdown-content">
@@ -313,61 +287,80 @@
       <a href="https://github.com/MwangiKinyeru" target="_blank">🐙GitHub</a>
     </footer>
      <script>
-        // Function to handle profile picture upload
-        function handleProfilePictureUpload(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    const profilePic = document.getElementById('profile-pic');
-                    profilePic.src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
         // Function to toggle the dropdown
         function toggleDropdown() {
             const dropdown = document.getElementById('dropdown-content');
             dropdown.classList.toggle('show');
         }
 
+        // Function to fetch project titles and links from the Project Page
+        function fetchProjectTitlesAndLinks() {
+            const projectCards = document.querySelectorAll('.project-card'); // Select all project cards
+            console.log('Project Cards:', projectCards); // Debug: Log project cards
+
+            const projects = [];
+
+            projectCards.forEach(card => {
+                const title = card.querySelector('h3').textContent; // Extract the project title
+                const link = card.querySelector('.view-button').href; // Extract the link from the "View Project" button
+                console.log('Title:', title, 'Link:', link); // Debug: Log title and link
+
+                projects.push({ title, link });
+            });
+
+            return projects;
+        }
+
         // Function to filter projects based on search input
         function filterProjects() {
             const searchTerm = document.getElementById('search-bar').value.toLowerCase();
             const projects = JSON.parse(localStorage.getItem('projects')) || [];
-            const filteredProjects = projects.filter(project => project.toLowerCase().includes(searchTerm));
+            const filteredProjects = projects.filter(project => 
+                project.title.toLowerCase().includes(searchTerm)
+            );
             updateDropdown(filteredProjects);
         }
 
         // Function to update the dropdown with project titles
         function updateDropdown(projects) {
             const dropdownContent = document.getElementById('dropdown-content');
-            dropdownContent.innerHTML = '';
+            dropdownContent.innerHTML = ''; // Clear existing content
+
             projects.forEach(project => {
                 const link = document.createElement('a');
-                link.href = `#${project}`; // Replace with actual project link
-                link.textContent = project;
+                link.href = project.link; // Use the link extracted from the Project Page
+                link.textContent = project.title.length > 20 ? 
+                    `${project.title.substring(0, 20)}...` : project.title; // Truncate long titles
+                link.title = project.title; // Show full title on hover
                 dropdownContent.appendChild(link);
             });
         }
 
-        // Function to add a new project
-        function addProject(title) {
-            const projects = JSON.parse(localStorage.getItem('projects')) || [];
-            projects.push(title);
-            localStorage.setItem('projects', JSON.stringify(projects));
-            updateDropdown(projects);
+        // Function to load and display projects
+        function loadProjects() {
+            const projects = fetchProjectTitlesAndLinks(); // Fetch projects from the Project Page
+            console.log('Projects:', projects); // Debug: Log fetched projects
+            localStorage.setItem('projects', JSON.stringify(projects)); // Save to localStorage
+            updateDropdown(projects); // Update the dropdown
         }
 
         // Load projects on page load
         window.onload = function () {
-            const projects = JSON.parse(localStorage.getItem('projects')) || [];
-            updateDropdown(projects);
+            loadProjects();
         };
 
-        // Example: Add a new project (for testing)
-        // addProject('Data Analysis Dashboard');
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches('.dashboard')) {
+                const dropdowns = document.getElementsByClassName('dropdown-content');
+                for (let i = 0; i < dropdowns.length; i++) {
+                    const openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        };
     </script>
 </body>
 </html>
