@@ -5,6 +5,22 @@
     <meta name="description" content="Martin Waweru's Data Science Portfolio. Explore projects, insights, and connect.">
     <title>About | Martin Waweru</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        // Load the navigation bar
+        fetch('/Website/navbar.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to load navigation bar');
+                }
+                return response.text();
+            })
+            .then(data => {
+                document.body.insertAdjacentHTML('afterbegin', data);
+            })
+            .catch(error => {
+                console.error('Error loading navigation bar:', error);
+            });
+    </script>
     <style>
         /* Navigation Bar */
         nav {
@@ -214,9 +230,23 @@
         .file-input {
             display: none;
         }
+
+        /* Hide label visually but keep it accessible to screen readers */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
     </style>
 </head>
 <body>
+    <!-- Navigation Bar (loaded dynamically via JavaScript) -->
+
     <!-- Profile Picture Section -->
     <section class="profile-container">
         <div class="profile-left">
