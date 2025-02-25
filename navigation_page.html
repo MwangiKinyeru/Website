@@ -1,11 +1,27 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Martin Waweru's Data Science Portfolio. Explore projects, insights, and connect.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About | Martin Waweru</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        // Load the navigation bar
+        fetch('/Website/navbar.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to load navigation bar');
+                }
+                return response.text();
+            })
+            .then(data => {
+                document.body.insertAdjacentHTML('afterbegin', data);
+            })
+            .catch(error => {
+                console.error('Error loading navigation bar:', error);
+            });
+    </script>
     <style>
         /* Navigation Bar */
         nav {
@@ -14,12 +30,10 @@
             right: 0;
             width: 100%;
             background-color: lightgreen;
-            padding: 15px 20px;
+            padding: 15px 0;
             text-align: right;
+            padding-left: 20px;
             z-index: 1000;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
         }
 
         nav a {
@@ -35,33 +49,6 @@
 
         nav a:hover {
             background-color: darkblue;
-        }
-
-        .menu-icon {
-            display: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: white;
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-                align-items: flex-end;
-            }
-
-            nav a {
-                display: none;
-                margin: 10px 0;
-            }
-
-            .menu-icon {
-                display: block;
-            }
-
-            nav.responsive a {
-                display: block;
-            }
         }
 
         /* Body and Header */
@@ -170,13 +157,13 @@
             position: absolute;
             background-color: white;
             border: 1px solid #ccc;
-            width: 80%; /* Same width as the dashboard button */
+            width: 80%; 
             max-height: 150px;
             overflow-y: auto;
             z-index: 1000;
             box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-            top: 100%; /* Position below the dashboard */
-            left: 10%; /* Align with the dashboard button */
+            top: 100%; 
+            left: 10%; 
         }
 
         .dropdown-content a {
@@ -185,15 +172,15 @@
             text-decoration: none;
             display: block;
             font-size: 12px;
-            white-space: nowrap; /* Prevent text from wrapping */
-            overflow: hidden; /* Hide overflow */
-            text-overflow: ellipsis; /* Add ellipsis for long text */
-            position: relative; /* For hover effect */
+            white-space: nowrap;
+            overflow: hidden; 
+            text-overflow: ellipsis; 
+            position: relative; 
         }
 
         .dropdown-content a:hover {
             background-color: #f1f1f1;
-            overflow: visible; /* Show full text on hover */
+            overflow: visible; 
             white-space: normal; /* Allow text to wrap */
             z-index: 1001; /* Ensure hovered item is on top */
         }
@@ -247,15 +234,6 @@
     </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav id="navbar">
-        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
-    </nav>
-
     <!-- Profile Picture Section -->
     <section class="profile-container">
         <div class="profile-left">
@@ -289,24 +267,16 @@
             </p>
         </div>
      </section>
-
      <!-- Linkedin and Github footer mapping-->
-     <footer class="footer">
-        <a href="https://www.linkedin.com/in/martin-waweru-169287336/" target="_blank">🔗LinkedIn</a> |
-        <a href="https://github.com/MwangiKinyeru" target="_blank">🐙GitHub</a>
-     </footer>
-
+      <footer class="footer">
+      <a href="https://www.linkedin.com/in/martin-waweru-169287336/" target="_blank">🔗LinkedIn</a> |
+      <a href="https://github.com/MwangiKinyeru" target="_blank">🐙GitHub</a>
+    </footer>
      <script>
         // Function to toggle the dropdown
         function toggleDropdown() {
             const dropdown = document.getElementById('dropdown-content');
             dropdown.classList.toggle('show');
-        }
-
-        // Function to toggle the responsive class on the navigation bar
-        function toggleMenu() {
-            const nav = document.getElementById('navbar');
-            nav.classList.toggle('responsive');
         }
 
         // Function to fetch projects from the server
