@@ -282,7 +282,7 @@
         // Function to fetch projects from the server
         async function fetchProjects() {
             try {
-                const response = await fetch('/Website/projects.json');
+                const response = await fetch('projects.json');
                 if (!response.ok) {
                     throw new Error('Failed to load projects');
                 }
