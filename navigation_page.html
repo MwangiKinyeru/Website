@@ -6,22 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About | Martin Waweru</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <script>
-        // Load the navigation bar
-        fetch('/Website/navbar.html')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to load navigation bar');
-                }
-                return response.text();
-            })
-            .then(data => {
-                document.body.insertAdjacentHTML('afterbegin', data);
-            })
-            .catch(error => {
-                console.error('Error loading navigation bar:', error);
-            });
-    </script>
     <style>
         /* Navigation Bar */
         nav {
@@ -282,7 +266,7 @@
         // Function to fetch projects from the server
         async function fetchProjects() {
             try {
-                const response = await fetch('/Website/projects.json'); // Replace with your JSON file path
+                const response = await fetch('/Website/projects.json');
                 if (!response.ok) {
                     throw new Error('Failed to load projects');
                 }
@@ -326,15 +310,6 @@
         window.onload = function () {
             loadProjects();
         };
-
-        // Example: Add a new project (for testing)
-        // function addProject(title) {
-        //     const projects = JSON.parse(localStorage.getItem('projects')) || [];
-        //     projects.push(title);
-        //     localStorage.setItem('projects', JSON.stringify(projects));
-        //     updateDropdown(projects);
-        // }
-        // addProject('Data Analysis Dashboard');
     </script>
 </body>
 </html>
