@@ -5,22 +5,6 @@
     <meta name="description" content="Martin Waweru's Data Science Portfolio. Explore projects, insights, and connect.">
     <title>About | Martin Waweru</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <script>
-        // Load the navigation bar
-        fetch('/Website/navbar.html')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to load navigation bar');
-                }
-                return response.text();
-            })
-            .then(data => {
-                document.body.insertAdjacentHTML('afterbegin', data);
-            })
-            .catch(error => {
-                console.error('Error loading navigation bar:', error);
-            });
-    </script>
     <style>
         /* Navigation Bar */
         nav {
@@ -241,7 +225,8 @@
             </div>
             <h2>Martin Waweru</h2>
             <p class="quote">"Data is the new oil, and I'm here to refine it."</p>
-            <input type="text" class="search-bar" id="search-bar" placeholder="🔍Search projects..." oninput="filterProjects()">
+            <label for="search-bar" class="sr-only">Search Projects</label>
+            <input type="text" id="search-bar" name="search-bar" class="search-bar" placeholder="🔍Search projects..." oninput="filterProjects()">
             <div class="dashboard" onclick="toggleDropdown()">
                 📈Dashboard
                 <div class="dropdown-content" id="dropdown-content">
