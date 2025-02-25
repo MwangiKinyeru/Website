@@ -296,11 +296,15 @@
         // Function to fetch project titles and links from the Project Page
         function fetchProjectTitlesAndLinks() {
             const projectCards = document.querySelectorAll('.project-card'); // Select all project cards
+            console.log('Project Cards:', projectCards); // Debug: Log project cards
+
             const projects = [];
 
             projectCards.forEach(card => {
                 const title = card.querySelector('h3').textContent; // Extract the project title
                 const link = card.querySelector('.view-button').href; // Extract the link from the "View Project" button
+                console.log('Title:', title, 'Link:', link); // Debug: Log title and link
+
                 projects.push({ title, link });
             });
 
@@ -335,6 +339,7 @@
         // Function to load and display projects
         function loadProjects() {
             const projects = fetchProjectTitlesAndLinks(); // Fetch projects from the Project Page
+            console.log('Projects:', projects); // Debug: Log fetched projects
             localStorage.setItem('projects', JSON.stringify(projects)); // Save to localStorage
             updateDropdown(projects); // Update the dropdown
         }
