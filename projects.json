@@ -10,5 +10,17 @@
         "visualizationUrl": "https://github.com/MwangiKinyeru/Book-Recommendation-system/blob/main/UI%20preview%202.png",
         "deploymentLink": "https://mwangikinyeru-book-recommendation-sy-book-recommendation-cjfods.streamlit.app/",
         "comments": "Very good and accurate project."
+    },
+    {
+        "title": "My portfolio Website",
+        "highlight": "Develops a content-based book recommendation system using TF-IDF and cosine similarity.",
+        "description": "This portfolio website highlights my data science and machine learning projects through a professional, user-friendly interface. It features a dynamic projects page with detailed information, including GitHub links, videos, dashboards, slides, and embedded notebook PDFs. The contact page offers multiple communication options, while the sticky navigation bar ensures smooth browsing. The site is built with HTML, CSS, and JavaScript and hosted on GitHub Pages, providing a shareable link for recruiters and collaborators. It aims to boost my professional visibility, create strong impressions, and simplify the presentation of my work in a polished, accessible format.",
+        "slide presentation": "https://drive.google.com/uc?export=download&id=1UtbVkJACIwTJpSTKVfRSG1OMisz_MkUw",
+        "notebookLink":,
+        "videoLink": "https://www.youtube.com/embed/R2RgYhpDzo0",
+        "imageUrl": "https://github.com/MwangiKinyeru/Book-Recommendation-system/blob/main/UI%20Overview.png",
+        "visualizationUrl": "https://github.com/MwangiKinyeru/Book-Recommendation-system/blob/main/UI%20preview%202.png",
+        "deploymentLink": "https://mwangikinyeru-book-recommendation-sy-book-recommendation-cjfods.streamlit.app/",
+        "comments": "Very good and accurate project."
     }
 ]
