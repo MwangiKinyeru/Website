@@ -13,10 +13,10 @@
     },
     {
         "title": "My portfolio Website",
-        "highlight": "Develops a content-based book recommendation system using TF-IDF and cosine similarity.",
+        "highlight": "Development of this website used HTML, CSS and JAVASCRIPT",
         "description": "This portfolio website highlights my data science and machine learning projects through a professional, user-friendly interface. It features a dynamic projects page with detailed information, including GitHub links, videos, dashboards, slides, and embedded notebook PDFs. The contact page offers multiple communication options, while the sticky navigation bar ensures smooth browsing. The site is built with HTML, CSS, and JavaScript and hosted on GitHub Pages, providing a shareable link for recruiters and collaborators. It aims to boost my professional visibility, create strong impressions, and simplify the presentation of my work in a polished, accessible format.",
-        "slide presentation": "https://1drv.ms/b/c/3524a09a1107f8a6/Ee_v3gZjVdRMhkIwjBiuSbQBEOCnZH47FsniP9eCnZ-1Rg?e=368aXO",
-        "videoLink": "https://youtu.be/a9fNqcFuwJQ",
+        "slide presentation": "https://1drv.ms/b/c/3524a09a1107f8a6/Ee_v3gZjVdRMhkIwjBiuSbQBh6OfbHXGxgkbfoiaPXI21A?e=vWv6aT",
+        "videoLink": "https://www.youtube.com/embed/a9fNqcFuwJQ",
         "deploymentLink": "https://mwangikinyeru.github.io/Website/",
         "comments": "Very good and accurate project."
     }
