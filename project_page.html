@@ -117,49 +117,6 @@
             align-self: flex-start; /* Align button to the left */
             margin-top: 10px; /* Add some space above the button */
         }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .projects-container {
-                grid-template-columns: repeat(2, 1fr); /* 2 columns per row for tablets */
-            }
-        }
-
-        @media (max-width: 768px) {
-            .projects-container {
-                grid-template-columns: repeat(2, 1fr); /* 2 columns per row for smaller tablets */
-            }
-
-            .project-card {
-                height: 130px; /* Slightly reduce height for smaller screens */
-            }
-
-            .project-card h3 {
-                font-size: 16px; /* Reduce font size for smaller screens */
-            }
-
-            .project-card p {
-                font-size: 12px; /* Reduce font size for smaller screens */
-            }
-        }
-
-        @media (max-width: 480px) {
-            .projects-container {
-                grid-template-columns: 1fr; /* 1 column per row for mobile phones */
-            }
-
-            .project-card {
-                height: 120px; /* Further reduce height for very small screens */
-            }
-
-            .project-card h3 {
-                font-size: 14px; /* Further reduce font size for very small screens */
-            }
-
-            .project-card p {
-                font-size: 12px; /* Further reduce font size for very small screens */
-            }
-        }
     </style>
 </head>
 
