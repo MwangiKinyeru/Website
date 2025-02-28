@@ -3,6 +3,420 @@
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Martin Waweru's Data Science Portfolio. Explore projects, insights, and connect.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensure proper scaling -->
+    <title>About | Martin Waweru</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        // Load the navigation bar
+        fetch('/Website/navbar.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to load navigation bar');
+                }
+                return response.text();
+            })
+            .then(data => {
+                document.body.insertAdjacentHTML('afterbegin', data);
+            })
+            .catch(error => {
+                console.error('Error loading navigation bar:', error);
+            });
+    </script>
+    <style>
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            background-color: lightgreen;
+            padding: 15px 0;
+            text-align: right;
+            padding-left: 20px;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            background-color: blue;
+            padding: 8px;
+            border-radius: 10px;
+        }
+
+        nav a:hover {
+            background-color: darkblue;
+        }
+
+        /* Body and Header */
+        body {
+            margin-top: 60px;
+            margin-bottom: 50px;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Profile Picture Section */
+        .profile-container {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+            flex-direction: column; /* Stack vertically on small screens */
+        }
+
+        .profile-left {
+            text-align: center;
+            flex: 1; /* Take full width on small screens */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            background-color: grey;
+            padding: 20px;
+            min-width: 180px;
+            position: relative;
+        }
+
+        .about-section {
+            flex: 3.5;
+            padding: 35px;
+            text-align: center;
+            background: url('about section.jpg');
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 100%;
+            position: relative;
+        }
+
+        .about-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+        }
+
+        .about-section h2, .about-section p {
+            position: relative;
+            z-index: 1;
+        }
+
+        #profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid white;
+            background-color: transparent;
+        }
+
+        .quote {
+            font-style: italic;
+            color: black;
+            margin-top: 10px;
+        }
+
+        .search-bar {
+            margin-top: 20px;
+            width: 80%;
+            padding: 6px;
+            font-size: 12px;
+            border-radius: 15px;
+        }
+
+        .dashboard, .button {
+            margin-top: 20px;
+            padding: 8px;
+            background-color: blue;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            width: 80%;
+            border-radius: 10px;
+        }
+
+        .dashboard:hover, button:hover {
+            background-color: darkblue;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ccc;
+            width: 80%; 
+            max-height: 150px;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            top: 100%; 
+            left: 10%; 
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 8px 12px;
+            text-decoration: none;
+            display: block;
+            font-size: 12px;
+            white-space: nowrap;
+            overflow: hidden; 
+            text-overflow: ellipsis; 
+            position: relative; 
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+            overflow: visible; 
+            white-space: normal; /* Allow text to wrap */
+            z-index: 1001; /* Ensure hovered item is on top */
+        }
+
+        .show {
+            display: block;
+        }
+
+        /* Footer styling for LinkedIn and GitHub */
+        .footer {
+            position: fixed;
+            bottom: 10px;
+            right: 20px;
+            text-align: right;
+        }
+
+        .footer a {
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-left: 15px;
+            background-color: blue;
+            padding: 8px;
+            border-radius: 10px;
+        }
+
+        .footer a:hover {
+            background-color: darkblue;
+        }
+
+        .profile-pic-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .camera-icon {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        /* Hide label visually but keep it accessible to screen readers */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .profile-container {
+                flex-direction: column; /* Stack vertically on small screens */
+            }
+
+            .profile-left {
+                flex: 1; /* Take full width */
+                padding: 10px; /* Reduce padding for smaller screens */
+            }
+
+            .about-section {
+                flex: 1; /* Take full width */
+                padding: 20px; /* Reduce padding for smaller screens */
+            }
+
+            .search-bar, .dashboard, .button {
+                width: 90%; /* Increase width for better usability */
+            }
+
+            .footer {
+                position: static; /* Move footer to the bottom of the page */
+                text-align: center;
+                margin-top: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .profile-left {
+                padding: 5px; /* Further reduce padding for very small screens */
+            }
+
+            .about-section {
+                padding: 10px; /* Further reduce padding for very small screens */
+            }
+
+            .search-bar, .dashboard, .button {
+                width: 100%; /* Full width for very small screens */
+            }
+
+            .footer {
+                position: static; /* Move footer to the bottom of the page */
+                text-align: center;
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar (loaded dynamically via JavaScript) -->
+
+    <!-- Profile Picture Section -->
+    <section class="profile-container">
+        <div class="profile-left">
+            <div class="profile-pic-container">
+                <img src="https://raw.githubusercontent.com/MwangiKinyeru/Website/main/profile.jpg" alt="Profile Picture" id="profile-pic">
+            </div>
+            <h2>Martin Waweru</h2>
+            <p class="quote">"Data is the new oil, and I'm here to refine it."</p>
+            <label for="search-bar" class="sr-only">Search Projects</label>
+            <input type="text" id="search-bar" name="search-bar" class="search-bar" placeholder="🔍Search projects..." oninput="filterProjects()">
+            <div class="dashboard" onclick="toggleDropdown()">
+                📈Dashboard
+                <div class="dropdown-content" id="dropdown-content">
+                    <!-- Project titles will be dynamically added here -->
+                </div>
+            </div>
+        </div>
+
+        <div class="about-section">
+            <h2>About Me</h2>
+            <p>
+                "I am a dedicated and results-driven Data Scientist with a Bachelor of Science in Business Administration with IT (Finance option). My expertise lies at the intersection of data science, financial analysis, and business strategy, allowing me to transform complex data into actionable insights that drive informed decision-making.  
+            </p>
+            <p>
+                I have a strong foundation in data analytics, machine learning, and financial modeling, and I have worked on projects involving predictive modeling, customer analytics, sentiment analysis, and recommendation systems. I specialize in data preprocessing, feature engineering, model optimization, and visualization, using tools like Python, SQL, and machine learning frameworks to build impactful solutions.  
+            </p>
+            <p>
+                I am passionate about leveraging data-driven approaches to enhance financial inclusion, business intelligence, and technological innovation. My ability to bridge the gap between data science and business strategy helps organizations improve operational efficiency and create meaningful value.  
+            </p>
+            <p>
+                I am eager to learn, collaborate, and innovate, applying my analytical expertise to solve real-world challenges. I welcome new opportunities, meaningful conversations, and collaborations. Feel free to reach out—I look forward to connecting with you! 💻💻"
+            </p>
+        </div>
+     </section>
+     <!-- Linkedin and Github footer mapping-->
+      <footer class="footer">
+      <a href="https://www.linkedin.com/in/martin-waweru-169287336/" target="_blank">🔗LinkedIn</a> |
+      <a href="https://github.com/MwangiKinyeru" target="_blank">🐙GitHub</a>
+    </footer>
+     <script>
+        // Function to toggle the dropdown
+        function toggleDropdown() {
+            const dropdown = document.getElementById('dropdown-content');
+            dropdown.classList.toggle('show');
+        }
+
+        // Function to fetch project titles and links from the Project Page
+        function fetchProjectTitlesAndLinks() {
+            const projectCards = document.querySelectorAll('.project-card'); // Select all project cards
+            console.log('Project Cards:', projectCards); // Debug: Log project cards
+
+            const projects = [];
+
+            projectCards.forEach(card => {
+                const title = card.querySelector('h3').textContent; // Extract the project title
+                const link = card.querySelector('.view-button').href; // Extract the link from the "View Project" button
+                console.log('Title:', title, 'Link:', link); // Debug: Log title and link
+
+                projects.push({ title, link });
+            });
+
+            return projects;
+        }
+
+        // Function to filter projects based on search input
+        function filterProjects() {
+            const searchTerm = document.getElementById('search-bar').value.toLowerCase();
+            const projects = JSON.parse(localStorage.getItem('projects')) || [];
+            const filteredProjects = projects.filter(project => 
+                project.title.toLowerCase().includes(searchTerm)
+            );
+            updateDropdown(filteredProjects);
+        }
+
+        // Function to update the dropdown with project titles
+        function updateDropdown(projects) {
+            const dropdownContent = document.getElementById('dropdown-content');
+            dropdownContent.innerHTML = ''; // Clear existing content
+
+            projects.forEach(project => {
+                const link = document.createElement('a');
+                link.href = project.link; // Use the link extracted from the Project Page
+                link.textContent = project.title.length > 20 ? 
+                    `${project.title.substring(0, 20)}...` : project.title; // Truncate long titles
+                link.title = project.title; // Show full title on hover
+                dropdownContent.appendChild(link);
+            });
+        }
+
+        // Function to load and display projects
+        function loadProjects() {
+            const projects = fetchProjectTitlesAndLinks(); // Fetch projects from the Project Page
+            console.log('Projects:', projects); // Debug: Log fetched projects
+            localStorage.setItem('projects', JSON.stringify(projects)); // Save to localStorage
+            updateDropdown(projects); // Update the dropdown
+        }
+
+        // Load projects on page load
+        window.onload = function () {
+            loadProjects();
+        };
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches('.dashboard')) {
+                const dropdowns = document.getElementsByClassName('dropdown-content');
+                for (let i = 0; i < dropdowns.length; i++) {
+                    const openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        };
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Martin Waweru's Data Science Portfolio. Explore projects, insights, and connect.">
     <title>About | Martin Waweru</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script>
