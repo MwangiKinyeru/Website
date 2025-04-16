@@ -55,7 +55,11 @@
         "title": "Book Recommendation System",
         "highlight": "Developement of this Book Recommendation System used CRISP-DM authoring and used content-based filtering using TF-IDF and cosine similarity.",
         "description": "This project creates a book recommendation system that suggests personalized books based on user input, such as a book title, author, or publisher. It uses text analysis techniques (TF-IDF and cosine similarity) to find and recommend the top 10 similar books. The system focuses on cleaning and organizing data, making it easy to scale for use in online bookstores, libraries, or schools. The data comes from Goodreads and is cleaned to ensure accurate suggestions. Following a structured approach (CRISP-DM), the system improves user experience by offering tailored recommendations. If no match is found, it prompts users to try a different input.",
+<<<<<<< HEAD
         "githubLink": "https://github.com/MwangiKinyeru/Book-Recommendation-system",
+=======
+        "githubLink": "https://github.com/MwangiKinyeru",
+>>>>>>> aa51517b93513dd8556b23933cda07f00a8a045c
         "notebook": "https://www.dropbox.com/scl/fi/z8es6whhfym6265nfwo7j/notebook.pdf?rlkey=fpq9ssxtuhznuql3gp3vmgc3q&st=93sc3fzd&raw=1",
         "slides": "https://www.dropbox.com/scl/fi/yk6pk3497x16c7mg01vaw/Presentation.pdf?rlkey=e8x4m7d479ukc9g7bz8slzvo7&st=rzx29qhn&raw=1",
         "dashboard": "https://www.dropbox.com/scl/fi/0jvsw6ik3uuejmqdpuaqr/UI-Overview.png?rlkey=mw7lfv975ccl5gcwooo4fuxbr&st=4r8t1xn4&raw=1",
@@ -68,7 +72,11 @@
         "title": "My portfolio Website",
         "highlight": "Development of this website used HTML, CSS and JAVASCRIPT",
         "description": "This portfolio website highlights my data science and machine learning projects through a professional, user-friendly interface. It features a dynamic projects page with detailed information, including GitHub links, videos, dashboards, slides, and embedded notebook PDFs. The contact page offers multiple communication options, while the sticky navigation bar ensures smooth browsing. The site is built with HTML, CSS, and JavaScript and hosted on GitHub Pages, providing a shareable link for recruiters and collaborators. It aims to boost my professional visibility, create strong impressions, and simplify the presentation of my work in a polished, accessible format.",
+<<<<<<< HEAD
         "githubLink": "https://github.com/MwangiKinyeru/Website",
+=======
+        "githubLink": "https://github.com/MwangiKinyeru",
+>>>>>>> aa51517b93513dd8556b23933cda07f00a8a045c
         "notebook": "https://www.dropbox.com/scl/fi/o59pravm1fmvhs03dsyom/Combined-web-pages-html.pdf?rlkey=7iwlup3nywy0m8d4ofpmcmzj2&st=tb1fuf89&raw=1",
         "slides": "https://www.dropbox.com/scl/fi/r5ebdj0phe1de7j4p44bs/slide-presentation.pdf?rlkey=hva9ll8ls1uee9dcxcb9ugwns&st=8oa81li7&raw=1",
         "dashboard": "https://dl.dropboxusercontent.com/scl/fi/7t70zi1ah1rv4dozxxdn7/home-page.png?rlkey=trgg0n0l2pl9ypqs442x39prq&st=dahql1qd&raw=1",
