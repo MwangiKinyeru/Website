@@ -1,5 +1,19 @@
 [
     {
+        "title": "Nitram FinanceBot: Conversational Banking Assistant for Internal Operations",
+        "highlight": "Web-based assistant powered by Groq LLM and PostgreSQL, designed for bank employees to query financial data using natural language.",
+        "description": "Nitram FinanceBot is a secure, web-based internal tool built for bank employees to interact with structured financial databases using natural language. Leveraging Groq's LLaMA3 model, Flask, and PostgreSQL, the system dynamically translates user input into SQL queries and returns results in a human-like tone. It enables employees to:\n\n- Query account balances, loan details, and customer profiles\n- Generate summaries like total loans or deposits\n- Use conversational history for smoother interactions\n\nThe bot is deployed as a Flask web app and uses a Render-hosted PostgreSQL database. Its clean UI ensures quick access to banking data without needing technical knowledge.",
+        "githubLink": "https://github.com/MwangiKinyeru/Nitram-DB-Finance-bot-LLM",
+        "notebook": "https://www.dropbox.com/scl/fi/fx2392uiltggas68gubev/Combined-Scripts-codes.pdf?rlkey=jdkjt57ahpf6866zkha4zbvvd&st=h1yqqf6q&raw=1",
+        "slides": "https://www.dropbox.com/scl/fi/r68lt29xhjhymk2vkzyrm/Nitram-DB-Finance-bot-LLM.pdf?rlkey=2chwkdchfkvtbpzkqdvuyv82i&st=pptb9h8t&raw=1",
+        "dashboard": "https://www.dropbox.com/scl/fi/ktpj72auhiscprtbyyrk1/Capture-1.PNG?rlkey=gt2qzpms14jadlqp1jprg69iu&st=mu65y5cm&raw=1",
+        "videoLink": "https://www.youtube.com/embed/a7MLUcMIoaE",
+        "Powerbi/Tableau": "No link available",
+        "deploymentLink": "https://nitram-db-finance-bot-llm-1.onrender.com/",
+        "comments": "Simple yet powerful—this bot enables fast, accurate access to banking data through natural language."
+    },
+    
+    {
         "title": "Conflict Risk Prediction System for Investment Decision-Making in Africa",
         "highlight": "Built using machine learning (Logistic Regression, Random Forest, XGBoost) and CRISP-DM to forecast conflict hotspots using ACLED data, with a focus on investment risk assessment.",
         "description": "This project is a data-driven system that predicts the probability of conflict occurrences across African regions to guide multinational investment decisions. Using the ACLED dataset, the system classifies regions by conflict risk using spatial-temporal analysis, real fatality data, and historical trends. It provides detailed insights including:\n\n- Conflict risk level\n- Predicted event type\n- Historical trends\n- Fatality analysis (including outliers)\n- Region-wise investment recommendations\n\nThe system is deployed as a Flask-based web app featuring a dynamic Folium map and detailed textual risk summaries. It's ideal for organizations evaluating regional stability for expansion or operations across Africa.",
@@ -12,6 +26,7 @@
         "deploymentLink": "https://conflict-prediction-system-2.onrender.com/",
         "comments": "Very good and accurate project."
     },
+    
     {
         "title": "Bomapot: Smart Recipe Recommendation Web App",
         "highlight": "An intelligent food assistant that suggests recipes based on either ingredients or dish names using NLP and text similarity.",
