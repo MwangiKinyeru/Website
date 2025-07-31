@@ -1,261 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Projects</title>
-    
-    <!-- Load the navigation bar -->
-    <script>
-        fetch('/Website/navbar.html')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to load navigation bar');
-                }
-                return response.text();
-            })
-            .then(data => {
-                document.body.insertAdjacentHTML('afterbegin', data);
-            })
-            .catch(error => console.error('Error loading navigation bar:', error));
-    </script>
-    
-    <!-- Responsive Styles for the page -->
-    <style>
-        /* Navigation Bar - Responsive */
-        nav {
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 100%;
-            background-color: lightgreen;
-            padding: 12px 0;
-            text-align: right;
-            padding-left: 15px;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Projects</title>
 
-        /* Navigation Buttons and View Project Button - Responsive */
-        nav a, .btn {
-            color: white;
-            text-decoration: none;
-            margin-left: 10px;
-            font-size: 12px;
-            font-weight: bold;
-            background-color: blue;
-            padding: 8px 12px;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            display: inline-block;
+  <!-- Load the navigation bar -->
+  <script>
+    fetch('/Website/navbar.html')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to load navigation bar');
         }
+        return response.text();
+      })
+      .then(data => {
+        document.body.insertAdjacentHTML('afterbegin', data);
+      })
+      .catch(error => console.error('Error loading navigation bar:', error));
+  </script>
 
-        nav a:hover, .btn:hover {
-            background-color: darkblue;
-            transform: translateY(-2px);
-        }
+  <!-- Styles for the page -->
+  <style>
+    /* Navigation Bar */
+    nav {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100%;
+      background-color: lightgreen;
+      padding: 15px 0 15px 20px;
+      text-align: right;
+      z-index: 1000;
+    }
 
-        @media (max-width: 768px) {
-            nav {
-                text-align: center;
-                padding: 10px 0;
-            }
-            nav a {
-                margin: 5px;
-                font-size: 11px;
-                padding: 6px 10px;
-            }
-        }
+    nav a, .btn {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      background-color: blue;
+      padding: 8px;
+      border-radius: 10px;
+    }
 
-        /* Body and Header - Responsive */
-        body {
-            margin-top: 60px;
-            margin-bottom: 0;
-            padding: 15px;
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
+    nav a:hover, .btn:hover {
+      background-color: darkblue;
+    }
 
-        .header {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            margin: 15px 0;
-            padding: 0;
-        }
+    /* Body and Header */
+    body {
+      margin: 0;
+      padding-top: 70px;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-        .header h1 {
-            font-size: 24px;
-            margin: 0;
-        }
+    .header {
+      margin-left: 20px;
+      margin-top: 20px;
+    }
 
-        @media (min-width: 768px) {
-            .header h1 {
-                font-size: 28px;
-            }
-        }
+    /* Projects Container */
+    .projects-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin: 20px;
+      width: calc(100% - 40px);
+    }
 
-        /* Projects Container - Responsive Grid */
-        .projects-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-            margin-top: 15px;
-            width: 100%;
-        }
+    /* Project Card */
+    .project-card {
+      background-color: #008B8B;
+      padding: 15px;
+      border-radius: 8px;
+      color: white;
+      position: relative;
+      height: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
 
-        @media (min-width: 600px) {
-            .projects-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
+    .project-card h3,
+    .project-card p {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin: 0;
+      width: 100%;
+    }
 
-        @media (min-width: 992px) {
-            .projects-container {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 20px;
-            }
-        }
+    .project-card h3 {
+      font-size: 18px;
+    }
 
-        /* Project Card - Responsive */
-        .project-card {
-            background-color: #008B8B;
-            padding: 15px;
-            border-radius: 8px;
-            color: white;
-            position: relative;
-            min-height: 150px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: all 0.3s ease;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-        }
+    .project-card p {
+      font-size: 14px;
+    }
 
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
+    .view-project {
+      align-self: flex-start;
+      margin-top: 10px;
+    }
 
-        /* Text Styles - Responsive */
-        .project-card h3 {
-            font-size: 16px;
-            margin: 0 0 8px 0;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+    /* ----------- Responsive Design ----------- */
+    @media (max-width: 768px) {
+      .projects-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
 
-        .project-card p {
-            font-size: 13px;
-            margin: 0 0 12px 0;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: normal;
-            line-height: 1.4;
-        }
+      nav a, .btn {
+        font-size: 11px;
+        padding: 6px;
+      }
 
-        @media (min-width: 768px) {
-            .project-card h3 {
-                font-size: 18px;
-            }
-            .project-card p {
-                font-size: 14px;
-            }
-        }
+      .header {
+        margin-left: 15px;
+      }
+    }
 
-        /* View Project Button - Responsive */
-        .view-project {
-            align-self: flex-start;
-            margin-top: auto;
-            padding: 8px 15px;
-            font-size: 12px;
-        }
+    @media (max-width: 480px) {
+      .projects-container {
+        grid-template-columns: 1fr;
+      }
 
-        /* Loading State */
-        .loading {
-            text-align: center;
-            padding: 30px;
-            font-size: 18px;
-            color: #666;
-        }
-    </style>
+      .project-card {
+        height: auto;
+      }
+
+      nav {
+        text-align: center;
+        padding: 10px 0;
+      }
+
+      nav a {
+        display: inline-block;
+        margin: 5px;
+      }
+
+      body {
+        align-items: center;
+      }
+
+      .header {
+        text-align: center;
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <!-- Header -->
-    <div class="header">
-        <h1>My Projects</h1>
-    </div>
+  <!-- Header -->
+  <div class="header">
+    <h1>My Projects</h1>
+  </div>
 
-    <!-- Container for displaying projects -->
-    <div class="projects-container" id="projectsContainer">
-        <div class="loading">Loading projects...</div>
-    </div>
+  <!-- Container for displaying projects -->
+  <div class="projects-container" id="projectsContainer"></div>
 
-    <!-- JavaScript to handle dynamic functionality -->
-    <script>
-        let projects = [];
+  <!-- JavaScript to handle dynamic functionality -->
+  <script>
+    let projects = [];
 
-        // Load projects from projects.json file
-        document.addEventListener("DOMContentLoaded", () => {
-            fetch('/Website/projects.json')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Failed to load projects');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    projects = data;
-                    displayProjects();
-                })
-                .catch(error => {
-                    console.error("Error loading project data:", error);
-                    const container = document.getElementById("projectsContainer");
-                    container.innerHTML = `
-                        <div style="grid-column: 1/-1; text-align: center; padding: 30px; color: #d9534f;">
-                            Error loading projects. Please try again later.
-                        </div>
-                    `;
-                });
-        });
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch('/Website/projects.json')
+        .then(response => response.json())
+        .then(data => {
+          projects = data;
+          displayProjects();
+        })
+        .catch(error => console.error("Error loading project data:", error));
+    });
 
-        // Function to display projects on the page
-        function displayProjects() {
-            const container = document.getElementById("projectsContainer");
-            
-            if (projects.length === 0) {
-                container.innerHTML = `
-                    <div style="grid-column: 1/-1; text-align: center; padding: 30px;">
-                        No projects found.
-                    </div>
-                `;
-                return;
-            }
-
-            container.innerHTML = ""; // Clear loading/error message
-            
-            projects.forEach(project => {
-                const card = document.createElement("div");
-                card.className = "project-card";
-                card.innerHTML = `
-                    <h3 title="${project.title}">${project.title}</h3>
-                    <p title="${project.highlight}">${project.highlight}</p>
-                    <a href="project_details.html?title=${encodeURIComponent(project.title)}" 
-                       class="btn view-project">
-                       View Project
-                    </a>
-                `;
-                container.appendChild(card);
-            });
-        }
-    </script>
+    function displayProjects() {
+      const container = document.getElementById("projectsContainer");
+      container.innerHTML = "";
+      projects.forEach(project => {
+        const card = document.createElement("div");
+        card.className = "project-card";
+        card.innerHTML = `
+          <h3 title="${project.title}">${project.title}</h3>
+          <p title="${project.highlight}">${project.highlight}</p>
+          <a href="project_details.html?title=${encodeURIComponent(project.title)}" class="btn view-project">View Project</a>
+        `;
+        container.appendChild(card);
+      });
+    }
+  </script>
 </body>
 </html>
