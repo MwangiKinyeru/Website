@@ -398,6 +398,33 @@
             clip: rect(0, 0, 0, 0);
             border: 0;
         }
+
+        /* Search results styling */
+        .search-results {
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ddd;
+            width: 80%;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            display: none;
+        }
+
+        .search-result {
+            padding: 8px 12px;
+            color: #2c3e50;
+            text-decoration: none;
+            display: block;
+            font-size: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .search-result:hover {
+            background-color: #f8f9fa;
+        }
     </style>
 </head>
 <body>
@@ -412,9 +439,10 @@
             <h2>Martin Waweru</h2>
             <p class="quote">"Data is the new oil, and I'm here to refine it."</p>
             <label for="search-bar" class="sr-only">Search Projects</label>
-            <input type="text" id="search-bar" name="search-bar" class="search-bar" placeholder="🔍Search projects..." oninput="filterProjects()">
+            <input type="text" id="search-bar" name="search-bar" class="search-bar" placeholder="🔍 Search projects...">
+            <div id="search-results" class="search-results"></div>
             <div class="dashboard" onclick="toggleDropdown()">
-                📈Dashboard
+                📈 Dashboard
                 <div class="dropdown-content" id="dropdown-content">
                     <!-- Project titles will be dynamically added here -->
                 </div>
@@ -509,80 +537,107 @@
       <a href="https://github.com/MwangiKinyeru" target="_blank">🐙GitHub</a>
     </footer>
      <script>
+        // Global variable to store projects data
+        let projectsData = [];
+
         // Function to toggle the dropdown
         function toggleDropdown() {
             const dropdown = document.getElementById('dropdown-content');
             dropdown.classList.toggle('show');
         }
 
-        // Function to fetch project titles and links from the Project Page
-        function fetchProjectTitlesAndLinks() {
-            const projectCards = document.querySelectorAll('.project-card'); // Select all project cards
-            console.log('Project Cards:', projectCards); // Debug: Log project cards
-
-            const projects = [];
-
-            projectCards.forEach(card => {
-                const title = card.querySelector('h3').textContent; // Extract the project title
-                const link = card.querySelector('.view-button').href; // Extract the link from the "View Project" button
-                console.log('Title:', title, 'Link:', link); // Debug: Log title and link
-
-                projects.push({ title, link });
-            });
-
-            return projects;
+        // Function to fetch projects from JSON file
+        async function fetchProjects() {
+            try {
+                const response = await fetch('projects.json');
+                if (!response.ok) {
+                    throw new Error('Failed to load projects');
+                }
+                projectsData = await response.json();
+                updateDashboard();
+            } catch (error) {
+                console.error('Error loading projects:', error);
+            }
         }
 
-        // Function to filter projects based on search input
-        function filterProjects() {
-            const searchTerm = document.getElementById('search-bar').value.toLowerCase();
-            const projects = JSON.parse(localStorage.getItem('projects')) || [];
-            const filteredProjects = projects.filter(project => 
-                project.title.toLowerCase().includes(searchTerm)
-            );
-            updateDropdown(filteredProjects);
-        }
-
-        // Function to update the dropdown with project titles
-        function updateDropdown(projects) {
+        // Function to update the dashboard with project titles
+        function updateDashboard() {
             const dropdownContent = document.getElementById('dropdown-content');
             dropdownContent.innerHTML = ''; // Clear existing content
 
-            projects.forEach(project => {
-                const link = document.createElement('a');
-                link.href = project.link; // Use the link extracted from the Project Page
-                link.textContent = project.title.length > 20 ? 
-                    ${project.title.substring(0, 20)}... : project.title; // Truncate long titles
-                link.title = project.title; // Show full title on hover
-                dropdownContent.appendChild(link);
+            projectsData.forEach((project, index) => {
+                const projectLink = document.createElement('a');
+                const truncatedTitle = project.title.length > 30 
+                    ? `${project.title.substring(0, 30)}...` 
+                    : project.title;
+                
+                projectLink.href = `project_page.html#${encodeURIComponent(project.title)}`;
+                projectLink.textContent = `${index + 1}. ${truncatedTitle}`;
+                projectLink.title = project.title; // Show full title on hover
+                dropdownContent.appendChild(projectLink);
             });
         }
 
-        // Function to load and display projects
-        function loadProjects() {
-            const projects = fetchProjectTitlesAndLinks(); // Fetch projects from the Project Page
-            console.log('Projects:', projects); // Debug: Log fetched projects
-            localStorage.setItem('projects', JSON.stringify(projects)); // Save to localStorage
-            updateDropdown(projects); // Update the dropdown
+        // Function to handle search functionality
+        function handleSearch() {
+            const searchInput = document.getElementById('search-bar');
+            const searchResults = document.getElementById('search-results');
+            
+            searchInput.addEventListener('input', debounce(function(e) {
+                const query = e.target.value.toLowerCase().trim();
+                searchResults.innerHTML = '';
+                
+                if (query.length < 2) {
+                    searchResults.style.display = 'none';
+                    return;
+                }
+
+                const matches = projectsData.filter(project => 
+                    project.title.toLowerCase().includes(query)
+                );
+
+                if (matches.length > 0) {
+                    matches.forEach(project => {
+                        const resultItem = document.createElement('a');
+                        resultItem.className = 'search-result';
+                        resultItem.href = `project_page.html#${encodeURIComponent(project.title)}`;
+                        resultItem.textContent = project.title;
+                        searchResults.appendChild(resultItem);
+                    });
+                    searchResults.style.display = 'block';
+                } else {
+                    searchResults.style.display = 'none';
+                }
+            }, 300));
         }
 
-        // Load projects on page load
-        window.onload = function () {
-            loadProjects();
-        };
+        // Debounce function to limit search frequency
+        function debounce(func, wait) {
+            let timeout;
+            return function(...args) {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(this, args), wait);
+            };
+        }
 
-        // Close the dropdown if the user clicks outside of it
-        window.onclick = function (event) {
-            if (!event.target.matches('.dashboard')) {
+        // Close dropdowns when clicking outside
+        window.onclick = function(event) {
+            if (!event.target.matches('.dashboard') && !event.target.matches('.search-bar')) {
                 const dropdowns = document.getElementsByClassName('dropdown-content');
-                for (let i = 0; i < dropdowns.length; i++) {
-                    const openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
+                for (let dropdown of dropdowns) {
+                    if (dropdown.classList.contains('show')) {
+                        dropdown.classList.remove('show');
                     }
                 }
+                document.getElementById('search-results').style.display = 'none';
             }
         };
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchProjects();
+            handleSearch();
+        });
     </script>
 </body>
 </html>
