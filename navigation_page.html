@@ -36,7 +36,7 @@
             background: linear-gradient(135deg, hsl(216, 94%, 34%) 0%, hsl(206, 87%, 46%) 100%);
         }
 
-        /* Navigation Bar */
+        /* Navigation Bar - Made responsive */
         nav {
             position: fixed;
             top: 0;
@@ -53,24 +53,39 @@
         nav a {
             color: white;
             text-decoration: none;
-            margin-left: 20px;
+            margin-left: 15px;
             font-size: 12px;
             font-weight: bold;
             background-color: #2980b9;
-            padding: 8px 15px;
+            padding: 8px 12px;
             border-radius: 20px;
             transition: all 0.3s ease;
         }
 
-        nav a:hover {
-            background-color: #1a5276;
-            transform: translateY(-2px);
+        @media (max-width: 768px) {
+            nav {
+                text-align: center;
+                padding: 10px 0;
+            }
+            nav a {
+                margin: 5px;
+                font-size: 11px;
+                padding: 6px 10px;
+                display: inline-block;
+            }
         }
 
-        /* Profile Picture Section */
+        /* Profile Picture Section - Made responsive */
         .profile-container {
             display: flex;
             width: 100%;
+            flex-direction: column;
+        }
+
+        @media (min-width: 768px) {
+            .profile-container {
+                flex-direction: row;
+            }
         }
 
         .profile-left {
@@ -88,78 +103,144 @@
             box-shadow: 2px 0 10px rgba(0,0,0,0.1);
         }
 
-        /* Updated About Section Styles */
+        @media (max-width: 768px) {
+            .profile-left {
+                width: 100%;
+                flex: none;
+                padding: 20px;
+            }
+        }
+
+        /* Updated About Section Styles - Made responsive */
         .about-section {
             flex: 3.5;
-            padding: 40px;
+            padding: 20px;
             box-sizing: border-box;
             color: #2c3e50;
             width: 100%;
             text-align: left;
             background-color: white;
             box-shadow: 0 0 20px rgba(0,0,0,0.05);
-            border-radius: 0 8px 8px 0;
+            border-radius: 0;
+        }
+
+        @media (min-width: 768px) {
+            .about-section {
+                padding: 40px;
+                border-radius: 0 8px 8px 0;
+            }
         }
 
         .about-header {
-            margin-bottom: 35px;
+            margin-bottom: 25px;
             text-align: center;
         }
 
         .header-title {
-            font-size: 35px;
-            margin-bottom: 10px;
+            font-size: 28px;
+            margin-bottom: 8px;
             font-weight: bold;
             color: hsl(239, 94%, 41%);
         }
 
+        @media (min-width: 768px) {
+            .header-title {
+                font-size: 35px;
+                margin-bottom: 10px;
+            }
+        }
+
         .header-subtitle {
-            font-size: 16px;
-            margin-bottom: 10px;
+            font-size: 14px;
+            margin-bottom: 8px;
             font-weight: bold;
             color: #091070;
         }
 
+        @media (min-width: 768px) {
+            .header-subtitle {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+        }
+
         .header-timezone {
-            font-size: 14px;
-            margin-bottom: 20px;
+            font-size: 12px;
+            margin-bottom: 15px;
             font-weight: bold;
             color: hsl(355, 77%, 50%);
         }
 
+        @media (min-width: 768px) {
+            .header-timezone {
+                font-size: 14px;
+                margin-bottom: 20px;
+            }
+        }
+
         .about-description {
-            font-size: 15px;
+            font-size: 14px;
             line-height: 1.6;
-            margin: 0 0 60px 0;
+            margin: 0 0 40px 0;
             text-align: left;
             max-width: 100%;
         }
 
+        @media (min-width: 768px) {
+            .about-description {
+                font-size: 15px;
+                margin: 0 0 60px 0;
+            }
+        }
+
         .about-description h2 {
-            font-size: 20px;
-            margin-bottom: 10px;
+            font-size: 18px;
+            margin-bottom: 8px;
             font-weight: 700;
             color: hsl(261, 89%, 31%);
         }
 
+        @media (min-width: 768px) {
+            .about-description h2 {
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+        }
+
         .cards-row {
             display: flex;
+            flex-direction: column;
             gap: 20px;
             justify-content: flex-start;
             flex-wrap: wrap;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
+        }
+
+        @media (min-width: 768px) {
+            .cards-row {
+                flex-direction: row;
+                margin-bottom: 60px;
+            }
         }
 
         .card {
             flex: 1;
-            min-width: 300px;
-            max-width: 500px;
+            min-width: 100%;
+            max-width: 100%;
             background: linear-gradient(to bottom right, #09c9e2, #6dd3e6);
-            padding: 25px;
+            padding: 20px;
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
             border-left: 4px solid #db3434;
+        }
+
+        @media (min-width: 768px) {
+            .card {
+                min-width: 300px;
+                max-width: 500px;
+                padding: 25px;
+            }
         }
 
         .card:hover {
@@ -168,16 +249,29 @@
         }
 
         .card h3 {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             color: hsl(261, 89%, 31%);
         }
 
+        @media (min-width: 768px) {
+            .card h3 {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+        }
+
         .card p {
-            font-size: 14px;
+            font-size: 13px;
             line-height: 1.5;
             color: #34495e;
+        }
+
+        @media (min-width: 768px) {
+            .card p {
+                font-size: 14px;
+            }
         }
 
         .skills-tags {
@@ -189,12 +283,19 @@
 
         .skill-tag {
             background-color: white;
-            padding: 4px 12px;
+            padding: 3px 10px;
             border-radius: 15px;
-            font-size: 13px;
+            font-size: 12px;
             border: 1px solid #d4e6f1;
             color: hwb(239 3% 29%);
             transition: all 0.2s ease;
+        }
+
+        @media (min-width: 768px) {
+            .skill-tag {
+                padding: 4px 12px;
+                font-size: 13px;
+            }
         }
 
         .skill-tag:hover {
@@ -203,23 +304,37 @@
         }
 
         #profile-pic {
-            width: 150px;
-            height: 150px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             border: 3px solid white;
             background-color: transparent;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
+        @media (min-width: 768px) {
+            #profile-pic {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
         .quote {
             font-style: italic;
             color: #bdc3c7;
             margin-top: 10px;
+            font-size: 13px;
+        }
+
+        @media (min-width: 768px) {
+            .quote {
+                font-size: inherit;
+            }
         }
 
         .search-bar {
-            margin-top: 20px;
-            width: 80%;
+            margin-top: 15px;
+            width: 90%;
             padding: 8px 12px;
             font-size: 12px;
             border-radius: 20px;
@@ -227,8 +342,14 @@
             background-color: #f8f9fa;
         }
 
+        @media (min-width: 768px) {
+            .search-bar {
+                width: 80%;
+            }
+        }
+
         .dashboard, .button {
-            margin-top: 20px;
+            margin-top: 15px;
             padding: 8px;
             background-color: #3498db;
             color: white;
@@ -236,10 +357,17 @@
             font-weight: bold;
             text-align: center;
             cursor: pointer;
-            width: 80%;
+            width: 90%;
             border-radius: 20px;
             transition: all 0.3s ease;
             border: none;
+        }
+
+        @media (min-width: 768px) {
+            .dashboard, .button {
+                width: 80%;
+                margin-top: 20px;
+            }
         }
 
         .dashboard:hover, button:hover {
@@ -252,14 +380,21 @@
             position: absolute;
             background-color: white;
             border: 1px solid #ddd;
-            width: 80%; 
+            width: 90%; 
             max-height: 150px;
             overflow-y: auto;
             z-index: 1000;
             box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
             top: 100%; 
-            left: 10%; 
+            left: 5%; 
             border-radius: 8px;
+        }
+
+        @media (min-width: 768px) {
+            .dropdown-content {
+                width: 80%;
+                left: 10%;
+            }
         }
 
         .dropdown-content a {
@@ -286,12 +421,22 @@
             display: block;
         }
 
-        /* Footer styling for LinkedIn and GitHub */
+        /* Footer styling for LinkedIn and GitHub - Made responsive */
         .footer {
             position: fixed;
             bottom: 10px;
-            right: 20px;
+            right: 10px;
             text-align: right;
+        }
+
+        @media (max-width: 768px) {
+            .footer {
+                position: static;
+                text-align: center;
+                margin-top: 20px;
+                padding-bottom: 20px;
+                width: 100%;
+            }
         }
 
         .footer a {
@@ -299,11 +444,18 @@
             font-size: 12px;
             font-weight: bold;
             text-decoration: none;
-            margin-left: 15px;
+            margin-left: 10px;
             background-color: #2980b9;
-            padding: 8px 15px;
+            padding: 6px 12px;
             border-radius: 20px;
             transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .footer a {
+                margin: 5px;
+                display: inline-block;
+            }
         }
 
         .footer a:hover {
