@@ -53,11 +53,11 @@
         nav a {
             color: white;
             text-decoration: none;
-            margin-left: 15px;
+            margin-left: 20px;
             font-size: 12px;
             font-weight: bold;
             background-color: #2980b9;
-            padding: 8px 12px;
+            padding: 8px 15px;
             border-radius: 20px;
             transition: all 0.3s ease;
         }
@@ -69,8 +69,6 @@
             }
             nav a {
                 margin: 5px;
-                font-size: 11px;
-                padding: 6px 10px;
                 display: inline-block;
             }
         }
@@ -82,7 +80,7 @@
             flex-direction: column;
         }
 
-        @media (min-width: 768px) {
+        @media (min-width: 769px) {
             .profile-container {
                 flex-direction: row;
             }
@@ -107,7 +105,7 @@
             .profile-left {
                 width: 100%;
                 flex: none;
-                padding: 20px;
+                box-shadow: none;
             }
         }
 
@@ -121,125 +119,86 @@
             text-align: left;
             background-color: white;
             box-shadow: 0 0 20px rgba(0,0,0,0.05);
-            border-radius: 0;
+            border-radius: 0 8px 8px 0;
         }
 
-        @media (min-width: 768px) {
+        @media (max-width: 768px) {
             .about-section {
-                padding: 40px;
-                border-radius: 0 8px 8px 0;
+                padding: 20px;
+                border-radius: 0;
             }
         }
 
         .about-header {
-            margin-bottom: 25px;
+            margin-bottom: 35px;
             text-align: center;
         }
 
         .header-title {
-            font-size: 28px;
-            margin-bottom: 8px;
+            font-size: 35px;
+            margin-bottom: 10px;
             font-weight: bold;
             color: hsl(239, 94%, 41%);
         }
 
-        @media (min-width: 768px) {
+        @media (max-width: 768px) {
             .header-title {
-                font-size: 35px;
-                margin-bottom: 10px;
+                font-size: 28px;
             }
         }
 
         .header-subtitle {
-            font-size: 14px;
-            margin-bottom: 8px;
+            font-size: 16px;
+            margin-bottom: 10px;
             font-weight: bold;
             color: #091070;
         }
 
-        @media (min-width: 768px) {
-            .header-subtitle {
-                font-size: 16px;
-                margin-bottom: 10px;
-            }
-        }
-
         .header-timezone {
-            font-size: 12px;
-            margin-bottom: 15px;
+            font-size: 14px;
+            margin-bottom: 20px;
             font-weight: bold;
             color: hsl(355, 77%, 50%);
         }
 
-        @media (min-width: 768px) {
-            .header-timezone {
-                font-size: 14px;
-                margin-bottom: 20px;
-            }
-        }
-
         .about-description {
-            font-size: 14px;
+            font-size: 15px;
             line-height: 1.6;
-            margin: 0 0 40px 0;
+            margin: 0 0 60px 0;
             text-align: left;
             max-width: 100%;
         }
 
-        @media (min-width: 768px) {
-            .about-description {
-                font-size: 15px;
-                margin: 0 0 60px 0;
-            }
-        }
-
         .about-description h2 {
-            font-size: 18px;
-            margin-bottom: 8px;
+            font-size: 20px;
+            margin-bottom: 10px;
             font-weight: 700;
             color: hsl(261, 89%, 31%);
         }
 
-        @media (min-width: 768px) {
-            .about-description h2 {
-                font-size: 20px;
-                margin-bottom: 10px;
-            }
-        }
-
         .cards-row {
             display: flex;
-            flex-direction: column;
             gap: 20px;
             justify-content: flex-start;
             flex-wrap: wrap;
-            margin-bottom: 40px;
-        }
-
-        @media (min-width: 768px) {
-            .cards-row {
-                flex-direction: row;
-                margin-bottom: 60px;
-            }
+            margin-bottom: 60px;
         }
 
         .card {
             flex: 1;
-            min-width: 100%;
+            min-width: 250px;
             max-width: 100%;
             background: linear-gradient(to bottom right, #09c9e2, #6dd3e6);
-            padding: 20px;
+            padding: 25px;
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
             border-left: 4px solid #db3434;
         }
 
-        @media (min-width: 768px) {
+        @media (max-width: 768px) {
             .card {
-                min-width: 300px;
-                max-width: 500px;
-                padding: 25px;
+                min-width: 100%;
             }
         }
 
@@ -249,29 +208,16 @@
         }
 
         .card h3 {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 700;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             color: hsl(261, 89%, 31%);
         }
 
-        @media (min-width: 768px) {
-            .card h3 {
-                font-size: 18px;
-                margin-bottom: 10px;
-            }
-        }
-
         .card p {
-            font-size: 13px;
+            font-size: 14px;
             line-height: 1.5;
             color: #34495e;
-        }
-
-        @media (min-width: 768px) {
-            .card p {
-                font-size: 14px;
-            }
         }
 
         .skills-tags {
@@ -283,19 +229,12 @@
 
         .skill-tag {
             background-color: white;
-            padding: 3px 10px;
+            padding: 4px 12px;
             border-radius: 15px;
-            font-size: 12px;
+            font-size: 13px;
             border: 1px solid #d4e6f1;
             color: hwb(239 3% 29%);
             transition: all 0.2s ease;
-        }
-
-        @media (min-width: 768px) {
-            .skill-tag {
-                padding: 4px 12px;
-                font-size: 13px;
-            }
         }
 
         .skill-tag:hover {
@@ -304,18 +243,18 @@
         }
 
         #profile-pic {
-            width: 120px;
-            height: 120px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             border: 3px solid white;
             background-color: transparent;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
-        @media (min-width: 768px) {
+        @media (max-width: 480px) {
             #profile-pic {
-                width: 150px;
-                height: 150px;
+                width: 120px;
+                height: 120px;
             }
         }
 
@@ -323,18 +262,11 @@
             font-style: italic;
             color: #bdc3c7;
             margin-top: 10px;
-            font-size: 13px;
-        }
-
-        @media (min-width: 768px) {
-            .quote {
-                font-size: inherit;
-            }
         }
 
         .search-bar {
-            margin-top: 15px;
-            width: 90%;
+            margin-top: 20px;
+            width: 80%;
             padding: 8px 12px;
             font-size: 12px;
             border-radius: 20px;
@@ -342,14 +274,8 @@
             background-color: #f8f9fa;
         }
 
-        @media (min-width: 768px) {
-            .search-bar {
-                width: 80%;
-            }
-        }
-
         .dashboard, .button {
-            margin-top: 15px;
+            margin-top: 20px;
             padding: 8px;
             background-color: #3498db;
             color: white;
@@ -357,17 +283,10 @@
             font-weight: bold;
             text-align: center;
             cursor: pointer;
-            width: 90%;
+            width: 80%;
             border-radius: 20px;
             transition: all 0.3s ease;
             border: none;
-        }
-
-        @media (min-width: 768px) {
-            .dashboard, .button {
-                width: 80%;
-                margin-top: 20px;
-            }
         }
 
         .dashboard:hover, button:hover {
@@ -380,21 +299,14 @@
             position: absolute;
             background-color: white;
             border: 1px solid #ddd;
-            width: 90%; 
+            width: 80%; 
             max-height: 150px;
             overflow-y: auto;
             z-index: 1000;
             box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
             top: 100%; 
-            left: 5%; 
+            left: 10%; 
             border-radius: 8px;
-        }
-
-        @media (min-width: 768px) {
-            .dropdown-content {
-                width: 80%;
-                left: 10%;
-            }
         }
 
         .dropdown-content a {
@@ -425,7 +337,7 @@
         .footer {
             position: fixed;
             bottom: 10px;
-            right: 10px;
+            right: 20px;
             text-align: right;
         }
 
@@ -435,7 +347,6 @@
                 text-align: center;
                 margin-top: 20px;
                 padding-bottom: 20px;
-                width: 100%;
             }
         }
 
@@ -444,18 +355,11 @@
             font-size: 12px;
             font-weight: bold;
             text-decoration: none;
-            margin-left: 10px;
+            margin-left: 15px;
             background-color: #2980b9;
-            padding: 6px 12px;
+            padding: 8px 15px;
             border-radius: 20px;
             transition: all 0.3s ease;
-        }
-
-        @media (max-width: 768px) {
-            .footer a {
-                margin: 5px;
-                display: inline-block;
-            }
         }
 
         .footer a:hover {
@@ -648,7 +552,7 @@
                 const link = document.createElement('a');
                 link.href = project.link; // Use the link extracted from the Project Page
                 link.textContent = project.title.length > 20 ? 
-                    `${project.title.substring(0, 20)}...` : project.title; // Truncate long titles
+                    ${project.title.substring(0, 20)}... : project.title; // Truncate long titles
                 link.title = project.title; // Show full title on hover
                 dropdownContent.appendChild(link);
             });
