@@ -18,10 +18,11 @@
             justify-content: center;
             align-items: center;
             color: white;
-            padding: 30px;
+            padding: 20px;
             margin: 0;
             text-align: center;
             overflow: hidden;
+        }
 
         /* Position the top heading */
         .hi-text {
@@ -45,7 +46,7 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
          }
          /* Style the Get Started button */
-         <button {
+         button {
             background-color: blue;
             color: white;
             font-size: 16px;
@@ -62,11 +63,58 @@
             background-color: rgba(255, 255, 255, 0.4);
          }
 
-         /* Responsive button */
-        @media (max-width: 600px) {
+         /* Responsive adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+                background-attachment: fixed;
+            }
+            
+            .hi-text {
+                font-size: 20px;
+                top: 30px;
+                left: 20px;
+                right: 20px;
+                text-align: center;
+            }
+            
+            .center-text {
+                margin: 15px 0;
+            }
+            
+            h2 {
+                font-size: 22px;
+            }
+            
+            h3 {
+                font-size: 18px;
+            }
+            
             button {
                 font-size: 14px;
                 padding: 6px 12px;
+                bottom: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hi-text {
+                font-size: 18px;
+                top: 20px;
+            }
+            
+            h2 {
+                font-size: 20px;
+            }
+            
+            h3 {
+                font-size: 16px;
+            }
+            
+            button {
+                font-size: 13px;
+                padding: 5px 10px;
+                bottom: 10px;
             }
         }
 
@@ -88,5 +136,3 @@
     <a href="navigation_page.html"><button>Get Started</button></a>
 </body>
 </html>
-
-
