@@ -22,33 +22,50 @@
     </script>
     <!-- Styling the page using css-->
     <style>
-        /* Navigation Bar Styling */
+        /* Navigation Bar Styling - Made responsive */
         nav {
             position: fixed;
             top: 0;
             right: 0;
             width: 100%;
             background-color: lightgreen;
-            padding: 15px 0;
+            padding: 12px 0;
             text-align: right;
-            padding-left: 20px;
+            padding-left: 15px;
             z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         nav a {
             color: white;
             text-decoration: none;
-            margin-left: 20px;
+            margin-left: 10px;
             font-size: 12px;
             font-weight: bold;
             background-color: blue;
-            padding: 8px;
+            padding: 6px 10px;
             border-radius: 10px;
+            transition: all 0.3s ease;
+            display: inline-block;
         }
 
         nav a:hover {
             background-color: darkblue;
+            transform: translateY(-2px);
         }
+
+        @media (max-width: 768px) {
+            nav {
+                text-align: center;
+                padding: 10px 0;
+            }
+            nav a {
+                margin: 5px;
+                font-size: 11px;
+                padding: 5px 8px;
+            }
+        }
+
         body {
             margin-top: 60px;
             font-family: Arial, sans-serif;
@@ -56,60 +73,118 @@
             padding: 0;
             display: flex;
             flex-direction: column;
-            height: 100vh;
+            min-height: 100vh;
             background-color: white;
         }
 
         .top-space {
-            height: 30vh;
+            height: 15vh;
             background-color: white;
+        }
+
+        @media (min-width: 768px) {
+            .top-space {
+                height: 30vh;
+            }
         }
 
         .middle-section {
             background-color: grey;
             color: white;
             text-align: center;
-            padding: 50px 0;
-            height: 40vh;
+            padding: 30px 20px;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            flex-grow: 1;
+        }
+
+        @media (min-width: 768px) {
+            .middle-section {
+                padding: 50px 0;
+                height: 40vh;
+            }
         }
 
         h1 {
-            font-size: 42px;
+            font-size: 28px;
             font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 42px;
+            }
         }
     
         p {
-            font-size: 18px;
-            max-width: 600px;
+            font-size: 16px;
+            max-width: 90%;
             margin: 10px auto;
+            line-height: 1.5;
+        }
+
+        @media (min-width: 768px) {
+            p {
+                font-size: 18px;
+                max-width: 600px;
+            }
         }
 
         .bottom-section {
-            height: 30vh;
             background-color: white;
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 30px 0;
+            flex-grow: 1;
+        }
+
+        @media (min-width: 768px) {
+            .bottom-section {
+                height: 30vh;
+                padding: 0;
+            }
         }
 
         .contact-info{
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             width: 90%;
             max-width: 1200px;
+            gap: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .contact-info {
+                flex-direction: row;
+                justify-content: space-between;
+                gap: 0;
+            }
         }
 
         .contact-column {
             flex: 1;
             padding: 10px;
-            text-align: left;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .contact-column {
+                text-align: left;
+            }
         }
 
         .contact-column p {
-            margin: 5px 0;
+            margin: 8px 0;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .contact-column p {
+                text-align: left;
+            }
         }
 
         .contact-column a {
@@ -117,16 +192,35 @@
             text-decoration: none;
             display: flex;
             align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        @media (min-width: 768px) {
+            .contact-column a {
+                justify-content: flex-start;
+            }
+        }
+
+        .contact-column a:hover {
+            background-color: #f0f0f0;
+            transform: translateX(3px);
         }
 
         .icon{
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             margin-right: 8px;
         }
 
-
-
+        @media (min-width: 768px) {
+            .icon {
+                width: 20px;
+                height: 20px;
+            }
+        }
     </style>
 </head>
 <body>
