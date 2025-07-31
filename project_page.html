@@ -20,46 +20,61 @@
             .catch(error => console.error('Error loading navigation bar:', error));
     </script>
     
-    <!-- Styles for the page -->
+    <!-- Responsive Styles for the page -->
     <style>
-        /* Navigation Bar */
+        /* Navigation Bar - Responsive */
         nav {
             position: fixed;
             top: 0;
             right: 0;
             width: 100%;
             background-color: lightgreen;
-            padding: 15px 0;
+            padding: 12px 0;
             text-align: right;
-            padding-left: 20px;
+            padding-left: 15px;
             z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        /* Navigation Buttons and View Project Button */
+        /* Navigation Buttons and View Project Button - Responsive */
         nav a, .btn {
             color: white;
             text-decoration: none;
-            margin-left: 20px;
+            margin-left: 10px;
             font-size: 12px;
             font-weight: bold;
             background-color: blue;
-            padding: 8px;
+            padding: 8px 12px;
             border-radius: 10px;
+            transition: all 0.3s ease;
+            display: inline-block;
         }
 
         nav a:hover, .btn:hover {
             background-color: darkblue;
+            transform: translateY(-2px);
         }
 
-        /* Body and Header */
+        @media (max-width: 768px) {
+            nav {
+                text-align: center;
+                padding: 10px 0;
+            }
+            nav a {
+                margin: 5px;
+                font-size: 11px;
+                padding: 6px 10px;
+            }
+        }
+
+        /* Body and Header - Responsive */
         body {
-            margin-top: 50px;
-            margin-bottom: 0 20px;
+            margin-top: 60px;
+            margin-bottom: 0;
+            padding: 15px;
             font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
-            align-items: left;
-            justify-content: flex-start;
             min-height: 100vh;
             overflow-x: hidden;
         }
@@ -67,56 +82,108 @@
         .header {
             display: flex;
             justify-content: flex-start;
-            align-items: left;
-            margin-top: 20px; 
-            padding-top: 10px;
+            align-items: center;
+            margin: 15px 0;
+            padding: 0;
         }
 
-        /* Projects Container */
+        .header h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        @media (min-width: 768px) {
+            .header h1 {
+                font-size: 28px;
+            }
+        }
+
+        /* Projects Container - Responsive Grid */
         .projects-container {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 columns per row */
-            gap: 20px;
-            margin-top: 20px;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 15px;
+            width: 100%;
         }
 
-        /* Project Card */
+        @media (min-width: 600px) {
+            .projects-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 992px) {
+            .projects-container {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+        }
+
+        /* Project Card - Responsive */
         .project-card {
             background-color: #008B8B;
             padding: 15px;
             border-radius: 8px;
             color: white;
             position: relative;
-            height: 150px; /* Fixed height for consistency */
+            min-height: 150px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            overflow: hidden; /* Prevent content from overflowing */
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
         }
 
-        /* Truncate Long Text */
-        .project-card h3,
-        .project-card p {
-            white-space: nowrap; /* Prevent text from wrapping */
-            overflow: hidden; /* Hide overflow */
-            text-overflow: ellipsis; /* Show ellipsis for truncated text */
-            margin: 0; /* Remove default margin */
-            width: 100%; /* Ensure text container takes full width */
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
+        /* Text Styles - Responsive */
         .project-card h3 {
-            font-size: 18px;
+            font-size: 16px;
+            margin: 0 0 8px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .project-card p {
-            font-size: 14px;
+            font-size: 13px;
+            margin: 0 0 12px 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: normal;
+            line-height: 1.4;
         }
 
-        /* View Project Button */
+        @media (min-width: 768px) {
+            .project-card h3 {
+                font-size: 18px;
+            }
+            .project-card p {
+                font-size: 14px;
+            }
+        }
+
+        /* View Project Button - Responsive */
         .view-project {
-            margin: 0; /* Remove default margin */
-            align-self: flex-start; /* Align button to the left */
-            margin-top: 10px; /* Add some space above the button */
+            align-self: flex-start;
+            margin-top: auto;
+            padding: 8px 15px;
+            font-size: 12px;
+        }
+
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 30px;
+            font-size: 18px;
+            color: #666;
         }
     </style>
 </head>
@@ -128,7 +195,9 @@
     </div>
 
     <!-- Container for displaying projects -->
-    <div class="projects-container" id="projectsContainer"></div>
+    <div class="projects-container" id="projectsContainer">
+        <div class="loading">Loading projects...</div>
+    </div>
 
     <!-- JavaScript to handle dynamic functionality -->
     <script>
@@ -137,25 +206,52 @@
         // Load projects from projects.json file
         document.addEventListener("DOMContentLoaded", () => {
             fetch('/Website/projects.json')
-                .then(response => response.json())
-                .then(data => {
-                    projects = data; // Populate global projects array
-                    displayProjects(); // Display loaded projects
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to load projects');
+                    }
+                    return response.json();
                 })
-                .catch(error => console.error("Error loading project data:", error));
+                .then(data => {
+                    projects = data;
+                    displayProjects();
+                })
+                .catch(error => {
+                    console.error("Error loading project data:", error);
+                    const container = document.getElementById("projectsContainer");
+                    container.innerHTML = `
+                        <div style="grid-column: 1/-1; text-align: center; padding: 30px; color: #d9534f;">
+                            Error loading projects. Please try again later.
+                        </div>
+                    `;
+                });
         });
 
         // Function to display projects on the page
         function displayProjects() {
             const container = document.getElementById("projectsContainer");
-            container.innerHTML = ""; // Clear previous projects
+            
+            if (projects.length === 0) {
+                container.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 30px;">
+                        No projects found.
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = ""; // Clear loading/error message
+            
             projects.forEach(project => {
                 const card = document.createElement("div");
                 card.className = "project-card";
                 card.innerHTML = `
                     <h3 title="${project.title}">${project.title}</h3>
                     <p title="${project.highlight}">${project.highlight}</p>
-                    <a href="project_details.html?title=${encodeURIComponent(project.title)}" class="btn view-project">View Project</a>
+                    <a href="project_details.html?title=${encodeURIComponent(project.title)}" 
+                       class="btn view-project">
+                       View Project
+                    </a>
                 `;
                 container.appendChild(card);
             });
