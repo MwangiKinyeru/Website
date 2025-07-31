@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="Martin Waweru's Data Science Portfolio. Explore projects, insights, and connect.">
     <title>About | Martin Waweru</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -70,6 +70,8 @@
             nav a {
                 margin: 5px;
                 display: inline-block;
+                font-size: 11px;
+                padding: 6px 12px;
             }
         }
 
@@ -106,6 +108,7 @@
                 width: 100%;
                 flex: none;
                 box-shadow: none;
+                padding: 20px 10px;
             }
         }
 
@@ -124,7 +127,7 @@
 
         @media (max-width: 768px) {
             .about-section {
-                padding: 20px;
+                padding: 15px;
                 border-radius: 0;
             }
         }
@@ -144,6 +147,13 @@
         @media (max-width: 768px) {
             .header-title {
                 font-size: 28px;
+                margin-bottom: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-title {
+                font-size: 24px;
             }
         }
 
@@ -154,11 +164,23 @@
             color: #091070;
         }
 
+        @media (max-width: 480px) {
+            .header-subtitle {
+                font-size: 14px;
+            }
+        }
+
         .header-timezone {
             font-size: 14px;
             margin-bottom: 20px;
             font-weight: bold;
             color: hsl(355, 77%, 50%);
+        }
+
+        @media (max-width: 480px) {
+            .header-timezone {
+                font-size: 12px;
+            }
         }
 
         .about-description {
@@ -169,11 +191,24 @@
             max-width: 100%;
         }
 
+        @media (max-width: 480px) {
+            .about-description {
+                font-size: 14px;
+                margin-bottom: 40px;
+            }
+        }
+
         .about-description h2 {
             font-size: 20px;
             margin-bottom: 10px;
             font-weight: 700;
             color: hsl(261, 89%, 31%);
+        }
+
+        @media (max-width: 480px) {
+            .about-description h2 {
+                font-size: 18px;
+            }
         }
 
         .cards-row {
@@ -182,6 +217,13 @@
             justify-content: flex-start;
             flex-wrap: wrap;
             margin-bottom: 60px;
+        }
+
+        @media (max-width: 480px) {
+            .cards-row {
+                gap: 15px;
+                margin-bottom: 40px;
+            }
         }
 
         .card {
@@ -199,6 +241,13 @@
         @media (max-width: 768px) {
             .card {
                 min-width: 100%;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 15px;
             }
         }
 
@@ -214,10 +263,23 @@
             color: hsl(261, 89%, 31%);
         }
 
+        @media (max-width: 480px) {
+            .card h3 {
+                font-size: 16px;
+            }
+        }
+
         .card p {
             font-size: 14px;
             line-height: 1.5;
             color: #34495e;
+        }
+
+        @media (max-width: 480px) {
+            .card p {
+                font-size: 13px;
+                line-height: 1.4;
+            }
         }
 
         .skills-tags {
@@ -235,6 +297,13 @@
             border: 1px solid #d4e6f1;
             color: hwb(239 3% 29%);
             transition: all 0.2s ease;
+        }
+
+        @media (max-width: 480px) {
+            .skill-tag {
+                font-size: 12px;
+                padding: 3px 10px;
+            }
         }
 
         .skill-tag:hover {
@@ -262,6 +331,13 @@
             font-style: italic;
             color: #bdc3c7;
             margin-top: 10px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 480px) {
+            .quote {
+                font-size: 13px;
+            }
         }
 
         .search-bar {
@@ -272,6 +348,14 @@
             border-radius: 20px;
             border: 1px solid #ddd;
             background-color: #f8f9fa;
+        }
+
+        @media (max-width: 480px) {
+            .search-bar {
+                width: 90%;
+                padding: 6px 10px;
+                font-size: 11px;
+            }
         }
 
         .dashboard, .button {
@@ -287,6 +371,15 @@
             border-radius: 20px;
             transition: all 0.3s ease;
             border: none;
+        }
+
+        @media (max-width: 480px) {
+            .dashboard, .button {
+                width: 90%;
+                padding: 6px;
+                font-size: 11px;
+                margin-top: 15px;
+            }
         }
 
         .dashboard:hover, button:hover {
@@ -309,6 +402,13 @@
             border-radius: 8px;
         }
 
+        @media (max-width: 480px) {
+            .dropdown-content {
+                width: 90%;
+                left: 5%;
+            }
+        }
+
         .dropdown-content a {
             color: #2c3e50;
             padding: 8px 12px;
@@ -320,6 +420,13 @@
             text-overflow: ellipsis; 
             position: relative; 
             transition: all 0.2s ease;
+        }
+
+        @media (max-width: 480px) {
+            .dropdown-content a {
+                padding: 6px 10px;
+                font-size: 11px;
+            }
         }
 
         .dropdown-content a:hover {
@@ -360,6 +467,14 @@
             padding: 8px 15px;
             border-radius: 20px;
             transition: all 0.3s ease;
+        }
+
+        @media (max-width: 480px) {
+            .footer a {
+                font-size: 11px;
+                padding: 6px 12px;
+                margin-left: 10px;
+            }
         }
 
         .footer a:hover {
@@ -413,6 +528,12 @@
             display: none;
         }
 
+        @media (max-width: 480px) {
+            .search-results {
+                width: 90%;
+            }
+        }
+
         .search-result {
             padding: 8px 12px;
             color: #2c3e50;
@@ -420,6 +541,13 @@
             display: block;
             font-size: 12px;
             transition: all 0.2s ease;
+        }
+
+        @media (max-width: 480px) {
+            .search-result {
+                padding: 6px 10px;
+                font-size: 11px;
+            }
         }
 
         .search-result:hover {
