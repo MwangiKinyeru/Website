@@ -177,7 +177,7 @@
         })
         .then(data => {
           const urlParams = new URLSearchParams(window.location.search);
-          const projectTitle = urlParams.get('title');
+          const projectTitle = decodeURIComponent(urlParams.get('title'));
           const project = data.find(p => p.title === projectTitle);
 
           if (project) {
