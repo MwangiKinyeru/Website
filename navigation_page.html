@@ -706,7 +706,7 @@
                     ? `${project.title.substring(0, 30)}...` 
                     : project.title;
                 
-                projectLink.href = `project_details.html=${encodeURIComponent(project.title)}`;
+                projectLink.href = `project_details.html?title=${encodeURIComponent(project.title)}`;
                 projectLink.textContent = `${index + 1}. ${truncatedTitle}`;
                 projectLink.title = project.title; // Show full title on hover
                 dropdownContent.appendChild(projectLink);
@@ -735,7 +735,7 @@
                     matches.forEach(project => {
                         const resultItem = document.createElement('a');
                         resultItem.className = 'search-result';
-                        resultItem.href = `project_details.html=${encodeURIComponent(project.title)}`;
+                        resultItem.href = `project_details.html?title=${encodeURIComponent(project.title)}`;
                         resultItem.textContent = project.title;
                         searchResults.appendChild(resultItem);
                     });
