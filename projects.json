@@ -12,6 +12,20 @@
         "deploymentLink": "https://nitram-db-finance-bot-llm-1.onrender.com/",
         "comments": "Simple yet powerful—this bot enables fast, accurate access to banking data through natural language."
     },
+
+    {
+      "title": "Customer Segmentation System: RFM Analysis & K-Means Clustering for Targeted Marketing",
+      "highlight": "Web-based customer segmentation tool that combines RFM analysis, rule-based logic, and K-Means clustering to identify behavioral customer groups for data-driven marketing strategies.",
+      "description": "This project implements a comprehensive customer segmentation system that analyzes retail transaction data to identify meaningful behavioral customer groups. The system uses RFM (Recency, Frequency, Monetary) feature engineering combined with K-Means clustering to categorize regular customers, while rule-based statistical thresholds identify exceptional high-value customers.\n\nThe segmentation pipeline performs the following steps:\n\n- Computes Recency, Frequency, and Monetary metrics from transaction data\n- Detects outliers using statistical thresholds to identify High Spenders, Power Shoppers, and Elite customers\n- Applies K-Means clustering to group regular customers into behavioral segments\n- Provides clear marketing recommendations for each segment\n\nThe solution is deployed as a Flask web application where users can input customer metrics and instantly receive customer segment classifications along with actionable business insights. This enables organizations to implement targeted marketing strategies, improve customer retention, and maximize customer lifetime value.",
+      "githubLink": "https://github.com/MwangiKinyeru/Customer-Segmentation",
+      "notebook": "https://www.dropbox.com/scl/fi/3f4v4u7xw3jvawodjnh9h/Notebook-Presentation.pdf?rlkey=3w8xhon2vw3xndacbjjmvf3hv&st=bjlxj0n5&raw=1",
+      "slides": "https://www.dropbox.com/scl/fi/o2s18un6qwmk11z1zg9d5/Customer-Segmentation-Using-RFM-Analysis-and-K-Means-Clustering.pdf?rlkey=re1f32p8miewlo7bqocfzevlf&st=djth5z3c&raw=1",
+      "dashboard": "https://www.dropbox.com/scl/fi/n7tyn8kzbu0o0mc8q2fpg/e-commerce-8676517_1280.jpg?rlkey=0hjckptpjgvcm0xeb73a9n6qd&st=2cm5mk0y&raw=1",
+      "videoLink": "https://www.youtube.com/embed/5Q0qBfTlDLw",
+      "Powerbi/Tableau": "No link available",
+      "deploymentLink": "https://customer-segmentation-g0b9.onrender.com/",
+      "comments": "A practical machine learning solution that transforms raw retail transaction data into actionable customer insights, enabling businesses to identify high-value customers and design targeted marketing strategies."
+    },
     
     {
         "title": "Conflict Risk Prediction System for Investment Decision-Making in Africa",
